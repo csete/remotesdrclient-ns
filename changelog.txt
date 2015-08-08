@@ -1,0 +1,4 @@
+1.11-ns1:
+	* Extend FFT refresh rate range up to 30 Hz.
+	* Include NS vesion in main window title.
+

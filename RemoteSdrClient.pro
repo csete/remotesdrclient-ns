@@ -72,6 +72,7 @@ FORMS += \
     nanoforms/rawiqwidget.ui
 
 OTHER_FILES += \
+    changelog.txt \
     resources/remoteclient.rc
 
 win32 {
