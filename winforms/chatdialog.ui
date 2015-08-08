@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CChatDialog</class>
+ <widget class="QDialog" name="CChatDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>410</width>
+    <height>411</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QPlainTextEdit" name="plainTextEditRx"/>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="plainTextEditTx">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="textInteractionFlags">
+      <set>Qt::TextEditable</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QPushButton" name="pushButtonClearRx">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>12</y>
+        <width>71</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Clear Rx</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBoxPskMode">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>20</y>
+        <width>69</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>20</y>
+        <width>47</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PSK Mode</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonStopTx">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>12</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Stop/Clear Tx</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonStartTx">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>12</y>
+        <width>71</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Start Tx</string>
+      </property>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButtonClearRx</sender>
+   <signal>clicked()</signal>
+   <receiver>CChatDialog</receiver>
+   <slot>OnClearRx()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>65</x>
+     <y>390</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>5</x>
+     <y>351</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>plainTextEditTx</sender>
+   <signal>textChanged()</signal>
+   <receiver>CChatDialog</receiver>
+   <slot>OnTxTextChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>111</x>
+     <y>329</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>5</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonStartTx</sender>
+   <signal>clicked()</signal>
+   <receiver>CChatDialog</receiver>
+   <slot>OnStartTx()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>270</x>
+     <y>383</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>408</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonStopTx</sender>
+   <signal>clicked()</signal>
+   <receiver>CChatDialog</receiver>
+   <slot>OnStopTx()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>361</x>
+     <y>386</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>396</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBoxPskMode</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>CChatDialog</receiver>
+   <slot>OnPskModeChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>132</x>
+     <y>376</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>135</x>
+     <y>404</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>OnClearRx()</slot>
+  <slot>OnPskModeChanged(int)</slot>
+  <slot>OnStopTx()</slot>
+  <slot>OnTxTextChanged()</slot>
+  <slot>OnStartTx()</slot>
+ </slots>
+</ui>

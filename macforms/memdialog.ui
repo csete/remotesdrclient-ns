@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MemDialog</class>
+ <widget class="QDialog" name="MemDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>481</width>
+    <height>335</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Memory Channels</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>true</bool>
+  </property>
+  <property name="modal">
+   <bool>false</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="contextMenuPolicy">
+      <enum>Qt::PreventContextMenu</enum>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QPushButton" name="pushButtonLoad">
+      <property name="geometry">
+       <rect>
+        <x>24</x>
+        <y>0</y>
+        <width>101</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="text">
+       <string>Load *.ini</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonSave">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>0</y>
+        <width>91</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="text">
+       <string>SaveAs *.ini</string>
+      </property>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTableWidget" name="tableWidgetMem">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="columnCount">
+      <number>2</number>
+     </property>
+     <column/>
+     <column/>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_1">
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Double Click in Row to Select       ---        Right Click Description to Edit</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QPushButton" name="pushButtonNew">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="text">
+       <string>New Entry</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonDelete">
+      <property name="geometry">
+       <rect>
+        <x>234</x>
+        <y>0</y>
+        <width>121</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="text">
+       <string>Remove Selected</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonUpdate">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>0</y>
+        <width>111</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="text">
+       <string>Update Selected</string>
+      </property>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+  <zorder>tableWidgetMem</zorder>
+  <zorder>groupBox</zorder>
+  <zorder>label_1</zorder>
+  <zorder>groupBox_2</zorder>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButtonNew</sender>
+   <signal>clicked()</signal>
+   <receiver>MemDialog</receiver>
+   <slot>OnNewItem()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>96</x>
+     <y>316</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>9</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tableWidgetMem</sender>
+   <signal>itemDoubleClicked(QTableWidgetItem*)</signal>
+   <receiver>MemDialog</receiver>
+   <slot>OnItemDoubleClicked(QTableWidgetItem*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>361</x>
+     <y>245</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>385</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonUpdate</sender>
+   <signal>clicked()</signal>
+   <receiver>MemDialog</receiver>
+   <slot>OnUpdateSelected()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>204</x>
+     <y>316</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>6</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tableWidgetMem</sender>
+   <signal>cellChanged(int,int)</signal>
+   <receiver>MemDialog</receiver>
+   <slot>OnCellChanged(int,int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>22</x>
+     <y>230</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>7</x>
+     <y>235</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonLoad</sender>
+   <signal>clicked()</signal>
+   <receiver>MemDialog</receiver>
+   <slot>OnLoadFileSelect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>108</x>
+     <y>15</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>3</x>
+     <y>46</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonSave</sender>
+   <signal>clicked()</signal>
+   <receiver>MemDialog</receiver>
+   <slot>OnSaveAsFileSelect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>272</x>
+     <y>19</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>384</x>
+     <y>66</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonDelete</sender>
+   <signal>clicked()</signal>
+   <receiver>MemDialog</receiver>
+   <slot>OnRemoveSelected()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>297</x>
+     <y>309</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>301</x>
+     <y>331</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>OnNewItem()</slot>
+  <slot>OnItemDoubleClicked(QTableWidgetItem*)</slot>
+  <slot>OnUpdateSelected()</slot>
+  <slot>OnRemoveSelected()</slot>
+  <slot>OnLoadFileSelect()</slot>
+  <slot>OnCellChanged(int,int)</slot>
+  <slot>OnSaveAsFileSelect()</slot>
+ </slots>
+</ui>
