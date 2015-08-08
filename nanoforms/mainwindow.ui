@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>540</height>
+    <width>782</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -33,6 +33,21 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
+    <property name="spacing">
+     <number>5</number>
+    </property>
+    <property name="leftMargin">
+     <number>5</number>
+    </property>
+    <property name="topMargin">
+     <number>5</number>
+    </property>
+    <property name="rightMargin">
+     <number>5</number>
+    </property>
+    <property name="bottomMargin">
+     <number>5</number>
+    </property>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
@@ -156,7 +171,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>20</y>
+            <y>30</y>
             <width>67</width>
             <height>321</height>
            </rect>
@@ -767,7 +782,7 @@
           <number>1</number>
          </property>
          <property name="maximum">
-          <number>30</number>
+          <number>60</number>
          </property>
         </widget>
         <widget class="QLabel" name="label_7">
@@ -1033,7 +1048,7 @@ background-color: rgb(255, 0, 0);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>640</width>
+     <width>782</width>
      <height>27</height>
     </rect>
    </property>
