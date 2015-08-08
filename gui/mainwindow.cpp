@@ -76,7 +76,7 @@
 #include <QSpinBox>
 #include <QSettings>
 
-#define PROGRAM_TITLE_VERSION " 1.11"
+#define PROGRAM_TITLE_VERSION "RemoteSdrClient 1.11-ns1"
 
 
 #define DOWNCONVERTER_TRANSITION_FREQ 56000000	//frequency where transition between direct and downconverter mode occurs
@@ -92,7 +92,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_InhibitUpdate = true;	//use to keep controls from updating on initialization
 	m_ProgramExeName = QFileInfo(QApplication::applicationFilePath()).fileName();
 	m_ProgramExeName.remove(".exe", Qt::CaseInsensitive);
-	setWindowTitle( m_ProgramExeName + PROGRAM_TITLE_VERSION);
+    setWindowTitle(PROGRAM_TITLE_VERSION);
 
 	m_pMemDialog = new CMemDialog(this, Qt::WindowTitleHint );
 
