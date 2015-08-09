@@ -1747,11 +1747,11 @@ void MainWindow::InitDemodSettings()
 	//These parameters are fixed and not saved in Settings
 	m_DemodSettings[DEMOD_MODE_AM].txt = "AM";
     m_DemodSettings[DEMOD_MODE_AM].Symetric = true;
-	m_DemodSettings[DEMOD_MODE_AM].DefHiCut = 3900;
+    m_DemodSettings[DEMOD_MODE_AM].DefHiCut = 5000;
 	m_DemodSettings[DEMOD_MODE_AM].HiCutMin = 1000;
-	m_DemodSettings[DEMOD_MODE_AM].HiCutMax = 3900;
-	m_DemodSettings[DEMOD_MODE_AM].DefLowCut = -3900;
-	m_DemodSettings[DEMOD_MODE_AM].LowCutMin = -3900;
+    m_DemodSettings[DEMOD_MODE_AM].HiCutMax = 10000;
+    m_DemodSettings[DEMOD_MODE_AM].DefLowCut = -5000;
+    m_DemodSettings[DEMOD_MODE_AM].LowCutMin = -10000;
 	m_DemodSettings[DEMOD_MODE_AM].LowCutMax = -1000;
 	m_DemodSettings[DEMOD_MODE_AM].ClickResolution = 1000;
     m_DemodSettings[DEMOD_MODE_AM].AudioFilter = false;
@@ -1762,12 +1762,12 @@ void MainWindow::InitDemodSettings()
 
 	m_DemodSettings[DEMOD_MODE_SAM].txt = "SAM";
     m_DemodSettings[DEMOD_MODE_SAM].Symetric = false;
-	m_DemodSettings[DEMOD_MODE_SAM].DefHiCut = 3900;
-	m_DemodSettings[DEMOD_MODE_SAM].HiCutMin = 100;
-	m_DemodSettings[DEMOD_MODE_SAM].HiCutMax = 3900;
-	m_DemodSettings[DEMOD_MODE_SAM].DefLowCut = -3900;
-	m_DemodSettings[DEMOD_MODE_SAM].LowCutMin = -3900;
-	m_DemodSettings[DEMOD_MODE_SAM].LowCutMax = -100;
+    m_DemodSettings[DEMOD_MODE_SAM].DefHiCut = 5000;
+    m_DemodSettings[DEMOD_MODE_SAM].HiCutMin = 1000;
+    m_DemodSettings[DEMOD_MODE_SAM].HiCutMax = 10000;
+    m_DemodSettings[DEMOD_MODE_SAM].DefLowCut = -5000;
+    m_DemodSettings[DEMOD_MODE_SAM].LowCutMin = -10000;
+    m_DemodSettings[DEMOD_MODE_SAM].LowCutMax = -1000;
 	m_DemodSettings[DEMOD_MODE_SAM].ClickResolution = 1000;
 	m_DemodSettings[DEMOD_MODE_SAM].AudioFilter = false;
 	m_DemodSettings[DEMOD_MODE_SAM].DefAgcDecay = 500;
@@ -1792,11 +1792,11 @@ void MainWindow::InitDemodSettings()
 	m_DemodSettings[DEMOD_MODE_FM].txt = "FM";
     m_DemodSettings[DEMOD_MODE_FM].Symetric = true;
 	m_DemodSettings[DEMOD_MODE_FM].DefHiCut = 5000;
-	m_DemodSettings[DEMOD_MODE_FM].HiCutMin = 2000;
-	m_DemodSettings[DEMOD_MODE_FM].HiCutMax = 7500;
+    m_DemodSettings[DEMOD_MODE_FM].HiCutMin = 1000;
+    m_DemodSettings[DEMOD_MODE_FM].HiCutMax = 15000;
 	m_DemodSettings[DEMOD_MODE_FM].DefLowCut = -5000;
-	m_DemodSettings[DEMOD_MODE_FM].LowCutMin = -7500;
-	m_DemodSettings[DEMOD_MODE_FM].LowCutMax = -2000;
+    m_DemodSettings[DEMOD_MODE_FM].LowCutMin = -15000;
+    m_DemodSettings[DEMOD_MODE_FM].LowCutMax = -1000;
 	m_DemodSettings[DEMOD_MODE_FM].ClickResolution = 5000;
 	m_DemodSettings[DEMOD_MODE_FM].AudioFilter = false;
 	m_DemodSettings[DEMOD_MODE_FM].DefAgcDecay = 500;
@@ -1823,13 +1823,13 @@ void MainWindow::InitDemodSettings()
     m_DemodSettings[DEMOD_MODE_USB].Symetric = false;
 	m_DemodSettings[DEMOD_MODE_USB].DefHiCut = 2800;
 	m_DemodSettings[DEMOD_MODE_USB].HiCutMin = 1000;
-	m_DemodSettings[DEMOD_MODE_USB].HiCutMax = 3900;
+    m_DemodSettings[DEMOD_MODE_USB].HiCutMax = 10000;
 	m_DemodSettings[DEMOD_MODE_USB].DefLowCut = 0;
 	m_DemodSettings[DEMOD_MODE_USB].LowCutMin = 0;
 	m_DemodSettings[DEMOD_MODE_USB].LowCutMax = 500;
 	m_DemodSettings[DEMOD_MODE_USB].ClickResolution = 100;
 	m_DemodSettings[DEMOD_MODE_USB].AudioFilter = true;
-	m_DemodSettings[DEMOD_MODE_USB].DefAgcDecay = 200;
+    m_DemodSettings[DEMOD_MODE_USB].DefAgcDecay = 500;
 	m_DemodSettings[DEMOD_MODE_USB].DefOffset = 0;
 	m_DemodSettings[DEMOD_MODE_USB].DefAgcThresh = -120;
 	m_DemodSettings[DEMOD_MODE_USB].DefAudioFilter = 0;
@@ -1840,11 +1840,11 @@ void MainWindow::InitDemodSettings()
 	m_DemodSettings[DEMOD_MODE_LSB].HiCutMin = -500;
 	m_DemodSettings[DEMOD_MODE_LSB].HiCutMax = 0;
 	m_DemodSettings[DEMOD_MODE_LSB].DefLowCut = -2800;
-	m_DemodSettings[DEMOD_MODE_LSB].LowCutMin = -3900;
+    m_DemodSettings[DEMOD_MODE_LSB].LowCutMin = -10000;
 	m_DemodSettings[DEMOD_MODE_LSB].LowCutMax = -1000;
 	m_DemodSettings[DEMOD_MODE_LSB].ClickResolution = 100;
 	m_DemodSettings[DEMOD_MODE_LSB].AudioFilter = false;
-	m_DemodSettings[DEMOD_MODE_LSB].DefAgcDecay = 200;
+    m_DemodSettings[DEMOD_MODE_LSB].DefAgcDecay = 500;
 	m_DemodSettings[DEMOD_MODE_LSB].DefOffset = 0;
 	m_DemodSettings[DEMOD_MODE_LSB].DefAgcThresh = -120;
 	m_DemodSettings[DEMOD_MODE_LSB].DefAudioFilter = 0;
@@ -1853,13 +1853,13 @@ void MainWindow::InitDemodSettings()
     m_DemodSettings[DEMOD_MODE_DSB].Symetric = false;
 	m_DemodSettings[DEMOD_MODE_DSB].DefHiCut = 3000;
 	m_DemodSettings[DEMOD_MODE_DSB].HiCutMin = 0;
-	m_DemodSettings[DEMOD_MODE_DSB].HiCutMax = 3900;
+    m_DemodSettings[DEMOD_MODE_DSB].HiCutMax = 10000;
 	m_DemodSettings[DEMOD_MODE_DSB].DefLowCut = -3000;
-	m_DemodSettings[DEMOD_MODE_DSB].LowCutMin = -3900;
+    m_DemodSettings[DEMOD_MODE_DSB].LowCutMin = -10000;
 	m_DemodSettings[DEMOD_MODE_DSB].LowCutMax = 0;
 	m_DemodSettings[DEMOD_MODE_DSB].ClickResolution = 100;
 	m_DemodSettings[DEMOD_MODE_DSB].AudioFilter = false;
-	m_DemodSettings[DEMOD_MODE_DSB].DefAgcDecay = 200;
+    m_DemodSettings[DEMOD_MODE_DSB].DefAgcDecay = 500;
 	m_DemodSettings[DEMOD_MODE_DSB].DefOffset = 0;
 	m_DemodSettings[DEMOD_MODE_DSB].DefAgcThresh = -120;
 	m_DemodSettings[DEMOD_MODE_DSB].DefAudioFilter = 0;
@@ -1929,12 +1929,12 @@ void MainWindow::InitDemodSettings()
 	ui->frameThresh->setRange(-120, -20);
 	ui->frameThresh->setSingleStep(5);
 	ui->frameThresh->setPageStep(5);
-	ui->frameThresh->setTickInterval(10);
+    ui->frameThresh->setTickInterval(10);
 
 	ui->frameDecay->SetName("Decay");
 	ui->frameDecay->SetSuffix(" mS");
 	ui->frameDecay->setRange(20, 2000);
 	ui->frameDecay->setSingleStep(10);
 	ui->frameDecay->setPageStep(100);
-	ui->frameDecay->setTickInterval(200);
+    ui->frameDecay->setTickInterval(200);
 }
