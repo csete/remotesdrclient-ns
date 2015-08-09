@@ -177,7 +177,7 @@ MainWindow::MainWindow(QWidget *parent) :
 		ui->comboBoxAudioCompression->addItem("G726 16K");
 		ui->comboBoxAudioCompression->setMaxCount(7);
 		ui->comboBoxAudioCompression->setCurrentIndex(m_AudioCompressionIndex);
-		ui->labelAudioRate->setText("Audio");
+        ui->labelAudioRate->setText("Codec");
 	}
 	else
 	{
