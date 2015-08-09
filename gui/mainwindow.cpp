@@ -261,7 +261,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->frameMeter->SetdBmLevel( -120.0, false );
 	m_pSdrInterface->SetVolume(m_Volume);
 
-	SetDemodModeCheckBoxes(m_DemodMode);	//set demod radio button states
+    SetDemodSelector(m_DemodMode);
 
 	ui->spinBoxOffset->setValue(m_DemodSettings[m_DemodMode].Offset);
 	ui->horizontalSliderSquelch->setValue(m_DemodSettings[m_DemodMode].SquelchValue);
@@ -1172,115 +1172,130 @@ void MainWindow::SetRawIQWidgetState(int state)
 	}
 }
 
-/////////////////////////////////////////////////////////////////////
-//Called when new mode is pressed so set the dialog data
-/////////////////////////////////////////////////////////////////////
-void MainWindow::ModeChanged()
+void MainWindow::OnDemodChanged(int index)
 {
-	if(m_InhibitUpdate)
-		return;
-	int lastmode = m_DemodMode;
-	if(ui->AMradioButton->isChecked())
-		m_DemodMode = DEMOD_MODE_AM;
-	else if(ui->SAMradioButton->isChecked())
-		m_DemodMode = DEMOD_MODE_SAM;
-	else if(ui->WAMradioButton->isChecked())
-		m_DemodMode = DEMOD_MODE_WAM;
-	else if(ui->FMradioButton->isChecked())
-		m_DemodMode = DEMOD_MODE_FM;
-	else if(ui->WFMradioButton->isChecked())
-		m_DemodMode = DEMOD_MODE_WFM;
-	else if(ui->USBradioButton->isChecked())
-		m_DemodMode = DEMOD_MODE_USB;
-	else if(ui->LSBradioButton->isChecked())
-		m_DemodMode = DEMOD_MODE_LSB;
-	else if(ui->DSBradioButton->isChecked())
-		m_DemodMode = DEMOD_MODE_DSB;
-	else if(ui->CWUradioButton->isChecked())
-		m_DemodMode = DEMOD_MODE_CWU;
-	else if(ui->CWLradioButton->isChecked())
-		m_DemodMode = DEMOD_MODE_CWL;
-	else if(ui->DIGradioButton->isChecked())
-		m_DemodMode = DEMOD_MODE_DIG;
-	else if(ui->RAWradioButton->isChecked())
-		m_DemodMode = DEMOD_MODE_RAW;
+    if(m_InhibitUpdate)
+        return;
 
-	if(m_DemodMode != lastmode)
-	{
-		if(DEMOD_MODE_DIG == m_DemodMode)
-			SetChatDialogState(true);
-		else
-			SetChatDialogState(false);
-		if(DEMOD_MODE_RAW == m_DemodMode)
-			SetRawIQWidgetState(true);
-		else
-			SetRawIQWidgetState(false);
+    int lastmode = m_DemodMode;
 
-		m_InhibitUpdate = true;	//use to keep controls from updating on initialization
-		ui->comboBoxAudioCompression->clear();
-		if(DEMOD_MODE_RAW != m_DemodMode )
-		{
-			ui->comboBoxAudioCompression->setMaxCount(7);
-			ui->comboBoxAudioCompression->addItem("No Audio");
-			ui->comboBoxAudioCompression->addItem("Raw 64K");
-			ui->comboBoxAudioCompression->addItem("G711 64K");
-			ui->comboBoxAudioCompression->addItem("G726 40K");
-			ui->comboBoxAudioCompression->addItem("G726 32K");
-			ui->comboBoxAudioCompression->addItem("G726 24K");
-			ui->comboBoxAudioCompression->addItem("G726 16K");
-			ui->comboBoxAudioCompression->setCurrentIndex(m_AudioCompressionIndex);
-			m_pSdrInterface->SetAudioCompressionMode(m_AudioCompressionIndex);
-			ui->labelAudioRate->setText("Audio");
-			ui->pushButtonPtt->setEnabled(true);
-		}
-		else
-		{
-			ui->comboBoxAudioCompression->setMaxCount(6);
-			ui->comboBoxAudioCompression->addItem("16 ksps I/Q");
-			ui->comboBoxAudioCompression->addItem("8 ksps I/Q");
-			ui->comboBoxAudioCompression->addItem("4 ksps I/Q");
-			ui->comboBoxAudioCompression->addItem("2 ksps I/Q");
-			ui->comboBoxAudioCompression->addItem("1 ksps I/Q");
-			ui->comboBoxAudioCompression->addItem("500 sps I/Q");
-			ui->comboBoxAudioCompression->setCurrentIndex(m_RawRateIndex);
-			m_pSdrInterface->SetAudioCompressionMode(m_RawRateIndex + COMP_MODE_RAW_16000);	//offset since shares same msg as audio comp
-			ui->labelAudioRate->setText("Rate");
-			if( ui->pushButtonPtt->isChecked() )
-				ui->pushButtonPtt->setChecked(false);
-			ui->pushButtonPtt->setEnabled(false);
-		}
-		m_InhibitUpdate = false;	//use to keep controls from updating on initialization
-	}
+    switch (index)
+    {
+    default:
+    case 0:
+        m_DemodMode = DEMOD_MODE_AM;
+        break;
+    case 1:
+        m_DemodMode = DEMOD_MODE_SAM;
+        break;
+    case 2:
+        m_DemodMode = DEMOD_MODE_WAM;
+        break;
+    case 3:
+        m_DemodMode = DEMOD_MODE_FM;
+        break;
+    case 4:
+        m_DemodMode = DEMOD_MODE_WFM;
+        break;
+    case 5:
+        m_DemodMode = DEMOD_MODE_USB;
+        break;
+    case 6:
+        m_DemodMode = DEMOD_MODE_LSB;
+        break;
+    case 7:
+        m_DemodMode = DEMOD_MODE_DSB;
+        break;
+    case 8:
+        m_DemodMode = DEMOD_MODE_CWL;
+        break;
+    case 9:
+        m_DemodMode = DEMOD_MODE_CWU;
+        break;
+    case 10:
+        m_DemodMode = DEMOD_MODE_DIG;
+        break;
+    case 11:
+        m_DemodMode = DEMOD_MODE_RAW;
+        break;
+    }
 
-	ui->spinBoxOffset->setValue(m_DemodSettings[m_DemodMode].Offset);
-	ui->horizontalSliderSquelch->setValue(m_DemodSettings[m_DemodMode].SquelchValue);
-	ui->frameDecay->SetValue(m_DemodSettings[m_DemodMode].AgcDecay);
-	ui->frameThresh->SetValue(m_DemodSettings[m_DemodMode].AgcThresh);
+    if(m_DemodMode != lastmode)
+    {
+        if(DEMOD_MODE_DIG == m_DemodMode)
+            SetChatDialogState(true);
+        else
+            SetChatDialogState(false);
+        if(DEMOD_MODE_RAW == m_DemodMode)
+            SetRawIQWidgetState(true);
+        else
+            SetRawIQWidgetState(false);
 
-	ui->framePlot->SetDemodRanges(m_DemodSettings[m_DemodMode].LowCutMin,m_DemodSettings[m_DemodMode].LowCutMax,
-								  m_DemodSettings[m_DemodMode].HiCutMin, m_DemodSettings[m_DemodMode].HiCutMax,
-								  m_DemodSettings[m_DemodMode].Symetric);
+        m_InhibitUpdate = true;	//use to keep controls from updating on initialization
+        ui->comboBoxAudioCompression->clear();
+        if(DEMOD_MODE_RAW != m_DemodMode )
+        {
+            ui->comboBoxAudioCompression->setMaxCount(7);
+            ui->comboBoxAudioCompression->addItem("No Audio");
+            ui->comboBoxAudioCompression->addItem("Raw 64K");
+            ui->comboBoxAudioCompression->addItem("G711 64K");
+            ui->comboBoxAudioCompression->addItem("G726 40K");
+            ui->comboBoxAudioCompression->addItem("G726 32K");
+            ui->comboBoxAudioCompression->addItem("G726 24K");
+            ui->comboBoxAudioCompression->addItem("G726 16K");
+            ui->comboBoxAudioCompression->setCurrentIndex(m_AudioCompressionIndex);
+            m_pSdrInterface->SetAudioCompressionMode(m_AudioCompressionIndex);
+            ui->labelAudioRate->setText("Audio");
+            ui->pushButtonPtt->setEnabled(true);
+        }
+        else
+        {
+            ui->comboBoxAudioCompression->setMaxCount(6);
+            ui->comboBoxAudioCompression->addItem("16 ksps I/Q");
+            ui->comboBoxAudioCompression->addItem("8 ksps I/Q");
+            ui->comboBoxAudioCompression->addItem("4 ksps I/Q");
+            ui->comboBoxAudioCompression->addItem("2 ksps I/Q");
+            ui->comboBoxAudioCompression->addItem("1 ksps I/Q");
+            ui->comboBoxAudioCompression->addItem("500 sps I/Q");
+            ui->comboBoxAudioCompression->setCurrentIndex(m_RawRateIndex);
+            m_pSdrInterface->SetAudioCompressionMode(m_RawRateIndex + COMP_MODE_RAW_16000);	//offset since shares same msg as audio comp
+            ui->labelAudioRate->setText("Rate");
+            if( ui->pushButtonPtt->isChecked() )
+                ui->pushButtonPtt->setChecked(false);
+            ui->pushButtonPtt->setEnabled(false);
+        }
+        m_InhibitUpdate = false;	//use to keep controls from updating on initialization
+    }
 
-	m_pSdrInterface->SetDemodMode(m_DemodMode);
-	m_pSdrInterface->SetAgc(0, m_DemodSettings[m_DemodMode].AgcThresh, m_DemodSettings[m_DemodMode].AgcDecay);
-	m_pSdrInterface->SetSquelchThreshold(m_DemodSettings[m_DemodMode].SquelchValue);
-	m_pSdrInterface->SetDemodFilter(m_DemodSettings[m_DemodMode].LowCut,
-									m_DemodSettings[m_DemodMode].HiCut,
-									m_DemodSettings[m_DemodMode].Offset);
-	ui->framePlot->SetSquelchThreshold(m_DemodSettings[m_DemodMode].SquelchValue);
-	ui->frameMeter->SetSquelchPos( m_DemodSettings[m_DemodMode].SquelchValue );
+    ui->spinBoxOffset->setValue(m_DemodSettings[m_DemodMode].Offset);
+    ui->horizontalSliderSquelch->setValue(m_DemodSettings[m_DemodMode].SquelchValue);
+    ui->frameDecay->SetValue(m_DemodSettings[m_DemodMode].AgcDecay);
+    ui->frameThresh->SetValue(m_DemodSettings[m_DemodMode].AgcThresh);
 
-	ui->framePlot->SetHiLowCutFrequencies(m_DemodSettings[m_DemodMode].LowCut, m_DemodSettings[m_DemodMode].HiCut);
-	ui->framePlot->UpdateOverlay();
+    ui->framePlot->SetDemodRanges(m_DemodSettings[m_DemodMode].LowCutMin,m_DemodSettings[m_DemodMode].LowCutMax,
+                                  m_DemodSettings[m_DemodMode].HiCutMin, m_DemodSettings[m_DemodMode].HiCutMax,
+                                  m_DemodSettings[m_DemodMode].Symetric);
 
-	ui->framePlot->SetClickResolution(m_DemodSettings[m_DemodMode].ClickResolution);
+    m_pSdrInterface->SetDemodMode(m_DemodMode);
+    m_pSdrInterface->SetAgc(0, m_DemodSettings[m_DemodMode].AgcThresh, m_DemodSettings[m_DemodMode].AgcDecay);
+    m_pSdrInterface->SetSquelchThreshold(m_DemodSettings[m_DemodMode].SquelchValue);
+    m_pSdrInterface->SetDemodFilter(m_DemodSettings[m_DemodMode].LowCut,
+                                    m_DemodSettings[m_DemodMode].HiCut,
+                                    m_DemodSettings[m_DemodMode].Offset);
+    ui->framePlot->SetSquelchThreshold(m_DemodSettings[m_DemodMode].SquelchValue);
+    ui->frameMeter->SetSquelchPos( m_DemodSettings[m_DemodMode].SquelchValue );
+
+    ui->framePlot->SetHiLowCutFrequencies(m_DemodSettings[m_DemodMode].LowCut, m_DemodSettings[m_DemodMode].HiCut);
+    ui->framePlot->UpdateOverlay();
+
+    ui->framePlot->SetClickResolution(m_DemodSettings[m_DemodMode].ClickResolution);
 qDebug()<<m_DemodSettings[m_DemodMode].HiCut << m_DemodSettings[m_DemodMode].LowCut;
 
-	if(m_DemodSettings[m_DemodMode].AudioFilter)
-		m_pSdrInterface->SetAudioFilter(RX_AUDIOFILTER_CTCSS);
-	else
-		m_pSdrInterface->SetAudioFilter(RX_AUDIOFILTER_NONE);
-	ui->checkBoxAudioHP->setChecked( m_DemodSettings[m_DemodMode].AudioFilter);
+    if(m_DemodSettings[m_DemodMode].AudioFilter)
+        m_pSdrInterface->SetAudioFilter(RX_AUDIOFILTER_CTCSS);
+    else
+        m_pSdrInterface->SetAudioFilter(RX_AUDIOFILTER_NONE);
+    ui->checkBoxAudioHP->setChecked( m_DemodSettings[m_DemodMode].AudioFilter);
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -1667,57 +1682,61 @@ tMem_Record Tmp;
 	m_DemodSettings[m_DemodMode].HiCut = Tmp.HiCut;
 	m_DemodSettings[m_DemodMode].Symetric = Tmp.Symetric;
 	m_DemodSettings[m_DemodMode].AudioFilter = Tmp.AudioFilter;
-	SetDemodModeCheckBoxes(m_DemodMode);
+    SetDemodSelector(m_DemodMode);
 //qDebug()<<Tmp.HiCut << Tmp.LowCut;
 	setWindowTitle( m_ProgramExeName + PROGRAM_TITLE_VERSION + "  -  " + Tmp.MemName);
 }
 
-void MainWindow::SetDemodModeCheckBoxes(int DemodMode)
+void MainWindow::SetDemodSelector(int DemodMode)
 {
-	m_DemodMode = DemodMode;
-	//set demod radio button states
-	switch(DemodMode)
-	{
-		case DEMOD_MODE_AM:
-			ui->AMradioButton->setChecked(true);
-			break;
-		case DEMOD_MODE_SAM:
-			ui->SAMradioButton->setChecked(true);
-			break;
-		case DEMOD_MODE_WAM:
-			ui->WAMradioButton->setChecked(true);
-			break;
-		case DEMOD_MODE_FM:
-			ui->FMradioButton->setChecked(true);
-			break;
-		case DEMOD_MODE_WFM:
-			ui->WFMradioButton->setChecked(true);
-			break;
-		case DEMOD_MODE_USB:
-			ui->USBradioButton->setChecked(true);
-			break;
-		case DEMOD_MODE_LSB:
-			ui->LSBradioButton->setChecked(true);
-			break;
-		case DEMOD_MODE_DSB:
-			ui->DSBradioButton->setChecked(true);
-			break;
-		case DEMOD_MODE_CWU:
-			ui->CWUradioButton->setChecked(true);
-			break;
-		case DEMOD_MODE_CWL:
-			ui->CWLradioButton->setChecked(true);
-			break;
-		case DEMOD_MODE_DIG:
-			ui->DIGradioButton->setChecked(true);
-			break;
-		case DEMOD_MODE_RAW:
-			ui->RAWradioButton->setChecked(true);
-			break;
-	}
-	ModeChanged();
-}
+    int idx;
 
+    m_DemodMode = DemodMode;
+
+    switch(DemodMode)
+    {
+    default:
+    case DEMOD_MODE_AM:
+        idx = 0;
+        break;
+    case DEMOD_MODE_SAM:
+        idx = 1;
+        break;
+    case DEMOD_MODE_WAM:
+        idx = 2;
+        break;
+    case DEMOD_MODE_FM:
+        idx = 3;
+        break;
+    case DEMOD_MODE_WFM:
+        idx = 4;
+        break;
+    case DEMOD_MODE_USB:
+        idx = 5;
+        break;
+    case DEMOD_MODE_LSB:
+        idx = 6;
+        break;
+    case DEMOD_MODE_DSB:
+        idx = 7;
+        break;
+    case DEMOD_MODE_CWL:
+        idx = 8;
+        break;
+    case DEMOD_MODE_CWU:
+        idx = 9;
+        break;
+    case DEMOD_MODE_DIG:
+        idx = 10;
+        break;
+    case DEMOD_MODE_RAW:
+        idx = 11;
+        break;
+    }
+
+    ui->comboBoxDemod->setCurrentIndex(idx);
+    OnDemodChanged(idx);
+}
 
 /////////////////////////////////////////////////////////////////////
 // Setup Demod initial parameters/limits

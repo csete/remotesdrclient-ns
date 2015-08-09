@@ -76,7 +76,6 @@ private slots:
 	void OnTransmitDlg();
 	void OnNewCenterFrequency(qint64 freq);	//called when center frequency has changed
 	void OnNewPlotCenterFrequency(qint64 freq);
-	void ModeChanged();
 	void OnStart();
 	void OnNullNco();
 	void OnAutoScale();
@@ -95,7 +94,8 @@ private slots:
 	void OndBOffsetChanged(int);
 	void OnAudioCompressionChanged(int);
 	void OnVideoCompressionChanged(int);
-	void OnNewWidth(int);
+    void OnDemodChanged(int);
+    void OnNewWidth(int);
 	void OnNewLowCutFreq(int);
 	void OnNewHighCutFreq(int);
 	void OnTxTrackChanged(int);
@@ -110,8 +110,8 @@ private:
 	void readSettings();
 	void writeSettings();
 	void InitDemodSettings();
-	void SetDemodModeCheckBoxes(int DemodMode);
-	void SetChatDialogState(int state);
+    void SetDemodSelector(int DemodMode);
+    void SetChatDialogState(int state);
 	void SetRawIQWidgetState(int state);
 
 	//Persistant Variables saved with Settings

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>782</width>
-    <height>720</height>
+    <width>923</width>
+    <height>699</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,8 +18,8 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>100</width>
-    <height>100</height>
+    <width>400</width>
+    <height>400</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -132,7 +132,7 @@
       <item>
        <widget class="QGroupBox" name="groupBox">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -140,7 +140,7 @@
         <property name="minimumSize">
          <size>
           <width>583</width>
-          <height>300</height>
+          <height>318</height>
          </size>
         </property>
         <property name="maximumSize">
@@ -155,148 +155,6 @@
         <property name="flat">
          <bool>true</bool>
         </property>
-        <widget class="QGroupBox" name="ModegroupBox">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>10</y>
-           <width>71</width>
-           <height>281</height>
-          </rect>
-         </property>
-         <property name="title">
-          <string>Mode</string>
-         </property>
-         <widget class="QWidget" name="layoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>30</y>
-            <width>67</width>
-            <height>321</height>
-           </rect>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout">
-           <property name="spacing">
-            <number>5</number>
-           </property>
-           <property name="sizeConstraint">
-            <enum>QLayout::SetNoConstraint</enum>
-           </property>
-           <property name="leftMargin">
-            <number>5</number>
-           </property>
-           <item>
-            <widget class="QRadioButton" name="AMradioButton">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>AM</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QRadioButton" name="SAMradioButton">
-             <property name="text">
-              <string>SAM</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QRadioButton" name="WAMradioButton">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>WAM</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QRadioButton" name="FMradioButton">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="text">
-              <string>FM</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QRadioButton" name="WFMradioButton">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="text">
-              <string>WFM</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QRadioButton" name="USBradioButton">
-             <property name="text">
-              <string>USB</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QRadioButton" name="LSBradioButton">
-             <property name="text">
-              <string>LSB</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QRadioButton" name="DSBradioButton">
-             <property name="text">
-              <string>DSB</string>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>20</width>
-               <height>20</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QRadioButton" name="CWLradioButton">
-             <property name="text">
-              <string>CWL</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QRadioButton" name="CWUradioButton">
-             <property name="text">
-              <string>CWU</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QRadioButton" name="DIGradioButton">
-             <property name="text">
-              <string>DIG</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QRadioButton" name="RAWradioButton">
-             <property name="text">
-              <string>RAW</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </widget>
         <widget class="CMeter" name="frameMeter">
          <property name="geometry">
           <rect>
@@ -1024,6 +882,89 @@ background-color: rgb(255, 0, 0);
           <bool>false</bool>
          </property>
         </widget>
+        <widget class="QComboBox" name="comboBoxDemod">
+         <property name="geometry">
+          <rect>
+           <x>260</x>
+           <y>270</y>
+           <width>78</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <item>
+          <property name="text">
+           <string>AM</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SAM</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>WAM</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>FM</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>WFM</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>USB</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>LSB</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>DSB</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>CWL</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>CWU</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>DIG</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>RAW</string>
+          </property>
+         </item>
+        </widget>
+        <widget class="QLabel" name="label_3">
+         <property name="geometry">
+          <rect>
+           <x>200</x>
+           <y>280</y>
+           <width>55</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Mode</string>
+         </property>
+        </widget>
        </widget>
       </item>
       <item>
@@ -1048,7 +989,7 @@ background-color: rgb(255, 0, 0);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>782</width>
+     <width>923</width>
      <height>27</height>
     </rect>
    </property>
@@ -1156,118 +1097,6 @@ background-color: rgb(255, 0, 0);
  <resources/>
  <connections>
   <connection>
-   <sender>AMradioButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>ModeChanged()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>89</x>
-     <y>257</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>120</x>
-     <y>342</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>SAMradioButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>ModeChanged()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>89</x>
-     <y>279</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>103</x>
-     <y>359</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>FMradioButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>ModeChanged()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>89</x>
-     <y>323</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>114</x>
-     <y>326</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>USBradioButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>ModeChanged()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>89</x>
-     <y>367</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>97</x>
-     <y>391</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>LSBradioButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>ModeChanged()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>89</x>
-     <y>389</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>104</x>
-     <y>422</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CWUradioButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>ModeChanged()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>89</x>
-     <y>455</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>101</x>
-     <y>457</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CWLradioButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>ModeChanged()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>89</x>
-     <y>433</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>33</x>
-     <y>479</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>horizontalSliderVol</sender>
    <signal>valueChanged(int)</signal>
    <receiver>MainWindow</receiver>
@@ -1311,22 +1140,6 @@ background-color: rgb(255, 0, 0);
     </hint>
     <hint type="destinationlabel">
      <x>84</x>
-     <y>484</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>DSBradioButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>ModeChanged()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>89</x>
-     <y>411</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>88</x>
      <y>484</y>
     </hint>
    </hints>
@@ -1540,22 +1353,6 @@ background-color: rgb(255, 0, 0);
    </hints>
   </connection>
   <connection>
-   <sender>WFMradioButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>ModeChanged()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>89</x>
-     <y>345</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>344</x>
-     <y>478</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>checkBoxMemory</sender>
    <signal>stateChanged(int)</signal>
    <receiver>MainWindow</receiver>
@@ -1568,22 +1365,6 @@ background-color: rgb(255, 0, 0);
     <hint type="destinationlabel">
      <x>502</x>
      <y>479</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>WAMradioButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>ModeChanged()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>89</x>
-     <y>301</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>319</x>
-     <y>268</y>
     </hint>
    </hints>
   </connection>
@@ -1620,40 +1401,23 @@ background-color: rgb(255, 0, 0);
    </hints>
   </connection>
   <connection>
-   <sender>DIGradioButton</sender>
-   <signal>clicked()</signal>
+   <sender>comboBoxDemod</sender>
+   <signal>currentIndexChanged(int)</signal>
    <receiver>MainWindow</receiver>
-   <slot>ModeChanged()</slot>
+   <slot>OnDemodChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>74</x>
-     <y>477</y>
+     <x>398</x>
+     <y>542</y>
     </hint>
     <hint type="destinationlabel">
-     <x>0</x>
-     <y>444</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>RAWradioButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>ModeChanged()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>58</x>
-     <y>491</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>9</x>
-     <y>381</y>
+     <x>390</x>
+     <y>302</y>
     </hint>
    </hints>
   </connection>
  </connections>
  <slots>
-  <slot>ModeChanged()</slot>
   <slot>OnVolumeSlider(int)</slot>
   <slot>OnAgcOn(bool)</slot>
   <slot>OnHangOn(bool)</slot>
@@ -1677,5 +1441,6 @@ background-color: rgb(255, 0, 0);
   <slot>OnMemoryCheckChanged(int)</slot>
   <slot>OnAlphaSpin(double)</slot>
   <slot>OnAutoScale()</slot>
+  <slot>OnDemodChanged(int)</slot>
  </slots>
 </ui>
