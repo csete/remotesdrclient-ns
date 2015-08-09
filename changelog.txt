@@ -1,4 +1,11 @@
-1.11-ns1:
-	* Extend FFT refresh rate range up to 30 Hz.
-	* Include NS vesion in main window title.
+1.11-ns3:
+    - Reorganize widgets to use the available horizontal space.
+    - Increase filter limits to +/- 10 kHz.
 
+1.11-ns2:
+    - Allow FFT rates up to 60 Hz.
+    - Replace mode selector with combo box.
+
+1.11-ns1:
+	- Extend FFT refresh rate range up to 30 Hz.
+	- Include NS vesion in main window title.
