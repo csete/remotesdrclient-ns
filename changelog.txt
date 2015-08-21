@@ -1,3 +1,6 @@
+TBD:
+    - Move mode selector.
+
 1.11-ns3:
     - Reorganize widgets to use the available horizontal space.
     - Increase filter limits to +/- 10 kHz.
