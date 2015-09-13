@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>RemoteSdrClient.png</file>
+    </qresource>
+</RCC>
+

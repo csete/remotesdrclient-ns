@@ -6,6 +6,7 @@ QT += widgets
 TARGET = remotesdrclient-ns
 TEMPLATE = app
 
+RESOURCES += icons.qrc
 
 SOURCES += \
     gui/mainwindow.cpp \
