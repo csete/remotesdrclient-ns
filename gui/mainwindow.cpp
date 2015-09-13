@@ -76,7 +76,7 @@
 #include <QSpinBox>
 #include <QSettings>
 
-#define PROGRAM_TITLE_VERSION "RemoteSdrClient 1.11-ns3"
+#define PROGRAM_TITLE_VERSION "RemoteSdrClient 1.11-ns4"
 
 
 #define DOWNCONVERTER_TRANSITION_FREQ 56000000	//frequency where transition between direct and downconverter mode occurs
@@ -241,7 +241,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui->spinBoxSpan->setValue(m_RxSpanFreq);
 
 	m_SpanFreq = m_RxSpanFreq;
-	ui->framePlot->SetPercent2DScreen(50);
+	ui->framePlot->SetPercent2DScreen(40);
 	ui->framePlot->SetSpanFreq( m_SpanFreq );
 	ui->framePlot->SetClickResolution(m_DemodSettings[m_DemodMode].ClickResolution);
 	ui->framePlot->SetdBStepSize(ui->comboBoxdBStep->itemData(m_dBStepIndex).toInt());
