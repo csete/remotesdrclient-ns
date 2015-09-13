@@ -1,5 +1,9 @@
-TBD:
+1.11-ns4:
     - Move mode selector.
+    - Don't use gradient in 2D plot.
+    - Reduce 2D screen percentage.
+    - Reduce number vertical divisions.
+    - Added window icon.
 
 1.11-ns3:
     - Reorganize widgets to use the available horizontal space.
