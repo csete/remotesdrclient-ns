@@ -337,18 +337,7 @@ CPlotter::CPlotter(QWidget *parent) :
 	// *** Need to read from file ***
 	for( int i=0; i<256; i++)
 	{
-		if( (i<43) )
-			m_ColorTbl[i].setRgb( 0,0, 255*(i)/43);
-		if( (i>=43) && (i<87) )
-			m_ColorTbl[i].setRgb( 0, 255*(i-43)/43, 255 );
-		if( (i>=87) && (i<120) )
-			m_ColorTbl[i].setRgb( 0,255, 255-(255*(i-87)/32));
-		if( (i>=120) && (i<154) )
-			m_ColorTbl[i].setRgb( (255*(i-120)/33), 255, 0);
-		if( (i>=154) && (i<217) )
-			m_ColorTbl[i].setRgb( 255, 255 - (255*(i-154)/62), 0);
-		if( (i>=217)  )
-			m_ColorTbl[i].setRgb( 255, 0, 128*(i-217)/38);
+        m_ColorTbl[i].setRgb(i, i, i);
 	}
 #else
 	int i;
@@ -853,11 +842,12 @@ QRect rect;
 
 	//m_OverlayPixmap.fill(Qt::black);
 	//fill background with gradient
-	QLinearGradient gradient(0, 0, 0 ,h);
-	gradient.setColorAt(1, Qt::black);
-//	gradient.setColorAt(0, Qt::gray);
-	gradient.setColorAt(0, Qt::darkBlue);
-	painter.setBrush(gradient);
+	//QLinearGradient gradient(0, 0, 0 ,h);
+	//gradient.setColorAt(1, Qt::black);
+	//gradient.setColorAt(0, Qt::darkGreen);
+	//gradient.setColorAt(0, Qt::darkBlue);
+	//painter.setBrush(gradient);
+    painter.setBrush(Qt::SolidPattern);
 	painter.drawRect(0, 0, w, h);
 
 	//Draw demod filter box

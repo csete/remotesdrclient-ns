@@ -12,7 +12,7 @@
 #include <QImage>
 #include "interface/sdrinterface.h"
 
-#define VERT_DIVS 14	//specify grid screen divisions
+#define VERT_DIVS 10    // specify grid screen divisions
 #define HORZ_DIVS 10
 
 #define MAX_TXT 128
