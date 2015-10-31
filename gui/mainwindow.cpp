@@ -76,7 +76,7 @@
 #include <QSpinBox>
 #include <QSettings>
 
-#define PROGRAM_TITLE_VERSION "RemoteSdrClient 1.11-ns4"
+#define PROGRAM_TITLE_VERSION "RemoteSdrClient 1.11-ns6"
 
 
 #define DOWNCONVERTER_TRANSITION_FREQ 56000000	//frequency where transition between direct and downconverter mode occurs
@@ -142,6 +142,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(ui->frameDecay, SIGNAL(sliderValChanged(int)), this, SLOT(OnAgcDecay(int)));
 	connect(ui->frameFreqCtrl, SIGNAL(NewFrequency(qint64)), this, SLOT(OnNewCenterFrequency(qint64)));
 
+    connect(ui->colorSelector, SIGNAL(currentIndexChanged(int)), ui->framePlot, SLOT(setPalette(int)));
+
 	connect(ui->framePlot, SIGNAL(NewWidth(int)), this, SLOT(OnNewWidth(int)));
 	connect(ui->framePlot, SIGNAL(NewCenterFreq(qint64)), this, SLOT(OnNewPlotCenterFrequency(qint64)));
 	connect(ui->framePlot, SIGNAL(NewLowCutFreq(int)),  this, SLOT(OnNewLowCutFreq(int)));
@@ -149,10 +151,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	//setup frequency control
 	ui->frameFreqCtrl->Setup(10, 0U, 3000000000UL, 1, UNITS_MHZ );
-	ui->frameFreqCtrl->SetBkColor(Qt::black);
-	ui->frameFreqCtrl->SetDigitColor(Qt::cyan);
-	ui->frameFreqCtrl->SetUnitsColor(Qt::lightGray);
-	ui->frameFreqCtrl->SetHighlightColor(Qt::yellow);
+    ui->frameFreqCtrl->SetBkColor(Qt::black);
+    ui->frameFreqCtrl->SetDigitColor(Qt::white);
+    ui->frameFreqCtrl->SetUnitsColor(Qt::white);
+    ui->frameFreqCtrl->SetHighlightColor(Qt::gray);
 	ui->frameFreqCtrl->SetFrequency(m_RxCenterFrequency);
 
 	ui->framePlot->SetVideoMode(m_VideoCompressionIndex);
@@ -241,7 +243,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui->spinBoxSpan->setValue(m_RxSpanFreq);
 
 	m_SpanFreq = m_RxSpanFreq;
-	ui->framePlot->SetPercent2DScreen(40);
+	ui->framePlot->SetPercent2DScreen(35);
 	ui->framePlot->SetSpanFreq( m_SpanFreq );
 	ui->framePlot->SetClickResolution(m_DemodSettings[m_DemodMode].ClickResolution);
 	ui->framePlot->SetdBStepSize(ui->comboBoxdBStep->itemData(m_dBStepIndex).toInt());
@@ -275,8 +277,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	ui->actionStayOnTop->setChecked(m_StayOnTop);
 	StayOnTop();
-	ui->pushButtonPtt->setStyleSheet("background-color: rgb(180, 180, 180);");
-	ui->pushButtonPtt->setEnabled(false);
 
 	if(DEMOD_MODE_DIG == m_DemodMode)
 		SetChatDialogState(true);
@@ -621,10 +621,6 @@ eSdrStatus status = (eSdrStatus)stat;
 			ui->pushButtonStart->setText("Start");
 			pal.setColor( QPalette::Active, QPalette::ButtonText, Qt::black );
             ui->framePlot->SetRunningState(false);
-			ui->pushButtonPtt->setStyleSheet("background-color: rgb(180, 180, 180);");
-            ui->pushButtonPtt->setEnabled(false);
-			if( ui->pushButtonPtt->isChecked() )
-			   ui->pushButtonPtt->setChecked(false);
 qDebug()<<"Sdr Not Connected";
 			break;
 		case SDR_CONNECTING:
@@ -692,7 +688,6 @@ qDebug()<<"Sdr Receiving";
 			else if(m_RxSpanFreq <= 10000000)
 				ui->spinBoxSpan->setSingleStep(1000000);
 
-			ui->pushButtonPtt->setStyleSheet("background-color: rgb(0, 255, 0)");
 			ui->pushButtonStart->setText("Stop");
 			pal.setColor( QPalette::Active, QPalette::ButtonText, Qt::darkGreen );
 			m_pSdrInterface->SetCtcssFreq(m_CtcssFreq);
@@ -705,14 +700,9 @@ qDebug()<<"Sdr Receiving";
 
             ui->framePlot->SetRunningState(true);
 			m_pSdrInterface->SendKeepalive();
-			if( (0 != m_AudioCompressionIndex) && (	DEMOD_MODE_RAW != m_DemodMode ) )
-                ui->pushButtonPtt->setEnabled(true);
-			if( ui->pushButtonPtt->isChecked() )
-                ui->pushButtonPtt->setChecked(false);
 			break;
 		case SDR_TRANSMITTING:
             m_InhibitUpdate = true;	//use to keep controls from updating on initialization
-			ui->pushButtonPtt->setStyleSheet("background-color: rgb(255, 0, 0)");
 			m_pSdrInterface->StartAudioIn(m_SoundInIndex);
             m_TxActive = true;
 
@@ -856,10 +846,6 @@ void MainWindow::OnButtonPtt(bool state)
 		return;
 	if(state)
 	{	//try to start Transmit mode
-		if( ui->checkBoxTxTrack->isChecked() )
-		{	 //if TX tracking
-			m_TxCenterFrequency = m_RxCenterFrequency;
-		}
 		m_pSdrInterface->SetPTT(CI_TX_STATE_ON );
 		ui->frameFreqCtrl->SetDigitColor(Qt::red);
 		ui->frameFreqCtrl->SetUnitsColor(Qt::darkRed);
@@ -871,10 +857,9 @@ void MainWindow::OnButtonPtt(bool state)
 	else
 	{
 		m_pSdrInterface->SetPTT(CI_TX_STATE_OFF);
-		ui->pushButtonPtt->setStyleSheet("background-color: rgb(0, 255, 0)");
 		m_pSdrInterface->StopAudioIn();
-		ui->frameFreqCtrl->SetDigitColor(Qt::cyan);
-		ui->frameFreqCtrl->SetUnitsColor(Qt::lightGray);
+        ui->frameFreqCtrl->SetDigitColor(Qt::white);
+        ui->frameFreqCtrl->SetUnitsColor(Qt::white);
 		ui->framePlot->SetCenterFreq( m_RxCenterFrequency );
 		ui->frameFreqCtrl->Setup(10, m_pSdrInterface->m_pRxFrequencyRangeMin[0], m_pSdrInterface->m_pRxFrequencyRangeMax[0], 1, UNITS_MHZ );
 		ui->frameFreqCtrl->SetFrequency(m_RxCenterFrequency);
@@ -892,10 +877,6 @@ void MainWindow::OnDigitalPtt(bool state)
 		return;
 	if(state)
 	{	//try to start Transmit mode
-		if( ui->checkBoxTxTrack->isChecked() )
-		{	 //if TX tracking
-			m_TxCenterFrequency = m_RxCenterFrequency;
-		}
 		m_pSdrInterface->SetPTT(CI_TX_STATE_ON );
 		ui->frameFreqCtrl->SetDigitColor(Qt::red);
 		ui->frameFreqCtrl->SetUnitsColor(Qt::darkRed);
@@ -910,7 +891,6 @@ void MainWindow::OnDigitalPtt(bool state)
 			m_pSdrInterface->SetPTT(CI_TX_STATE_DELAYOFF);
 		else
 			m_pSdrInterface->SetPTT(CI_TX_STATE_OFF );
-		ui->pushButtonPtt->setStyleSheet("background-color: rgb(0, 255, 0)");
 		m_pSdrInterface->StopAudioIn();
 		ui->frameFreqCtrl->SetDigitColor(Qt::cyan);
 		ui->frameFreqCtrl->SetUnitsColor(Qt::lightGray);
@@ -935,14 +915,16 @@ void MainWindow::keyPressEvent ( QKeyEvent * event )
 		return;
 	if( event->key() == Qt::Key_Control )
 	{
-		if(ui->pushButtonPtt->isEnabled())
+#if 0
+        if(ui->pushButtonPtt->isEnabled())
 		{
 			if( ui->pushButtonPtt->isChecked() )
                 ui->pushButtonPtt->setChecked(false);
 			else
                 ui->pushButtonPtt->setChecked(true);
 		}
-	}
+#endif
+    }
 }
 
 /////////////////////////////////////////////////////////////
@@ -978,33 +960,16 @@ void MainWindow::OnNewCenterFrequency(qint64 freq)
 {
 	if(m_InhibitUpdate)
 		return;
-	if(ui->pushButtonPtt->isChecked())
-	{	//if PTT is active
-		if( !ui->checkBoxTxTrack->isChecked() )
-		{	 //if not TX tracking
-			m_TxCenterFrequency = freq;
-			m_pSdrInterface->SetTxFrequency(m_TxCenterFrequency);
-		}
-		else
-		{	//TX tracking is ON
-			m_TxCenterFrequency = freq;
-			m_RxCenterFrequency = freq;
-			m_pSdrInterface->SetRxFrequency(m_RxCenterFrequency);
-			m_pSdrInterface->SetTxFrequency(m_TxCenterFrequency);
-		}
-		ui->framePlot->SetCenterFreq( m_TxCenterFrequency );
-	}
-	else
-	{	//if PTT is not active
+
+    {
+        // PTT is not active
 		m_RxCenterFrequency = freq;
 		m_pSdrInterface->SetRxFrequency(m_RxCenterFrequency);
 	}
 
-	if( ui->pushButtonPtt->isChecked() )
-		ui->framePlot->SetCenterFreq( m_TxCenterFrequency );
-	else
-		ui->framePlot->SetCenterFreq( m_RxCenterFrequency );
-	if( m_RxCenterFrequency > DOWNCONVERTER_TRANSITION_FREQ )
+    ui->framePlot->SetCenterFreq( m_RxCenterFrequency );
+
+    if( m_RxCenterFrequency > DOWNCONVERTER_TRANSITION_FREQ )
 		ui->spinBoxAtten->setSpecialValueText("Auto Gain");
 	else
 		ui->spinBoxAtten->setSpecialValueText("");
@@ -1071,17 +1036,6 @@ void MainWindow::OnAudioCompressionChanged(int indx)
 	{
 		m_AudioCompressionIndex = indx;
 		m_pSdrInterface->SetAudioCompressionMode(m_AudioCompressionIndex);
-		if(0==m_AudioCompressionIndex)
-		{
-			if( ui->pushButtonPtt->isChecked() )
-				ui->pushButtonPtt->setChecked(false);
-			ui->pushButtonPtt->setEnabled(false);
-		}
-		else
-		{
-			if(	SDR_RECEIVING == m_pSdrInterface->m_SdrStatus )
-				ui->pushButtonPtt->setEnabled(true);
-		}
 	}
 	else
 	{
@@ -1246,7 +1200,6 @@ void MainWindow::OnDemodChanged(int index)
             ui->comboBoxAudioCompression->setCurrentIndex(m_AudioCompressionIndex);
             m_pSdrInterface->SetAudioCompressionMode(m_AudioCompressionIndex);
             ui->labelAudioRate->setText("Audio");
-            ui->pushButtonPtt->setEnabled(true);
         }
         else
         {
@@ -1260,9 +1213,6 @@ void MainWindow::OnDemodChanged(int index)
             ui->comboBoxAudioCompression->setCurrentIndex(m_RawRateIndex);
             m_pSdrInterface->SetAudioCompressionMode(m_RawRateIndex + COMP_MODE_RAW_16000);	//offset since shares same msg as audio comp
             ui->labelAudioRate->setText("Rate");
-            if( ui->pushButtonPtt->isChecked() )
-                ui->pushButtonPtt->setChecked(false);
-            ui->pushButtonPtt->setEnabled(false);
         }
         m_InhibitUpdate = false;	//use to keep controls from updating on initialization
     }
@@ -1590,6 +1540,11 @@ void MainWindow::OnMemoryCheckChanged(int state)
 			m_pMemDialog->hide();
 		}
 	}
+}
+
+void MainWindow::OnAntennaSelected(int index)
+{
+    m_pSdrInterface->SetAntenna(index);
 }
 
 /////////////////////////////////////////////////////////////////////

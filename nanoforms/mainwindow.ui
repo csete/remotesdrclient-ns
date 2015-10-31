@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1012</width>
-    <height>605</height>
+    <height>611</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -287,51 +287,25 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButtonPtt">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+         <widget class="QComboBox" name="antennaSelector">
+          <property name="toolTip">
+           <string>Select antenna</string>
           </property>
-          <property name="font">
-           <font>
-            <family>Arial</family>
-            <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-            <kerning>true</kerning>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(0, 255, 0);
-selection-background-color: rgb(255, 0, 0);
-selection-color: rgb(255, 0, 0);
-background-color: rgb(255, 0, 0);
-</string>
-          </property>
-          <property name="text">
-           <string>PTT</string>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="checkBoxTxTrack">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>TX Freq Track</string>
-          </property>
+          <item>
+           <property name="text">
+            <string>ANT: Auto</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>ANT 1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>ANT 2</string>
+           </property>
+          </item>
          </widget>
         </item>
         <item>
@@ -914,6 +888,35 @@ background-color: rgb(255, 0, 0);
            </property>
           </widget>
          </item>
+         <item row="3" column="2">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Color</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="QComboBox" name="colorSelector">
+           <item>
+            <property name="text">
+             <string>Default</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Gray</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Blue</string>
+            </property>
+           </item>
+          </widget>
+         </item>
         </layout>
        </widget>
       </item>
@@ -1013,6 +1016,25 @@ background-color: rgb(255, 0, 0);
     <string>Transmit</string>
    </property>
   </action>
+  <action name="actionColorDefault">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Default</string>
+   </property>
+  </action>
+  <action name="actionColorGray">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Gray</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -1055,8 +1077,8 @@ background-color: rgb(255, 0, 0);
    <slot>OnVolumeSlider(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>583</x>
-     <y>345</y>
+     <x>609</x>
+     <y>476</y>
     </hint>
     <hint type="destinationlabel">
      <x>485</x>
@@ -1071,8 +1093,8 @@ background-color: rgb(255, 0, 0);
    <slot>OnOffsetChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>244</x>
-     <y>441</y>
+     <x>203</x>
+     <y>480</y>
     </hint>
     <hint type="destinationlabel">
      <x>82</x>
@@ -1087,8 +1109,8 @@ background-color: rgb(255, 0, 0);
    <slot>OnRfGainChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>274</x>
-     <y>311</y>
+     <x>352</x>
+     <y>559</y>
     </hint>
     <hint type="destinationlabel">
      <x>84</x>
@@ -1103,8 +1125,8 @@ background-color: rgb(255, 0, 0);
    <slot>OnSquelchChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>583</x>
-     <y>352</y>
+     <x>609</x>
+     <y>503</y>
     </hint>
     <hint type="destinationlabel">
      <x>347</x>
@@ -1119,8 +1141,8 @@ background-color: rgb(255, 0, 0);
    <slot>OnStepSizeChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>604</x>
-     <y>251</y>
+     <x>793</x>
+     <y>484</y>
     </hint>
     <hint type="destinationlabel">
      <x>476</x>
@@ -1135,8 +1157,8 @@ background-color: rgb(255, 0, 0);
    <slot>OndBOffsetChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>627</x>
-     <y>150</y>
+     <x>1001</x>
+     <y>187</y>
     </hint>
     <hint type="destinationlabel">
      <x>521</x>
@@ -1151,8 +1173,8 @@ background-color: rgb(255, 0, 0);
    <slot>OnAudioCompressionChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>584</x>
-     <y>421</y>
+     <x>609</x>
+     <y>533</y>
     </hint>
     <hint type="destinationlabel">
      <x>418</x>
@@ -1167,8 +1189,8 @@ background-color: rgb(255, 0, 0);
    <slot>OnVideoCompressionChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>584</x>
-     <y>451</y>
+     <x>793</x>
+     <y>518</y>
     </hint>
     <hint type="destinationlabel">
      <x>443</x>
@@ -1183,8 +1205,8 @@ background-color: rgb(255, 0, 0);
    <slot>OnAveSpin(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>495</x>
-     <y>241</y>
+     <x>934</x>
+     <y>485</y>
     </hint>
     <hint type="destinationlabel">
      <x>295</x>
@@ -1199,28 +1221,12 @@ background-color: rgb(255, 0, 0);
    <slot>OnRateSpin(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>445</x>
-     <y>451</y>
+     <x>934</x>
+     <y>452</y>
     </hint>
     <hint type="destinationlabel">
      <x>313</x>
      <y>468</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButtonPtt</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>MainWindow</receiver>
-   <slot>OnButtonPtt(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>347</x>
-     <y>362</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>76</x>
-     <y>462</y>
     </hint>
    </hints>
   </connection>
@@ -1231,8 +1237,8 @@ background-color: rgb(255, 0, 0);
    <slot>OnStart()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>373</x>
-     <y>431</y>
+     <x>203</x>
+     <y>448</y>
     </hint>
     <hint type="destinationlabel">
      <x>400</x>
@@ -1247,8 +1253,8 @@ background-color: rgb(255, 0, 0);
    <slot>OnSpanChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>404</x>
-     <y>231</y>
+     <x>793</x>
+     <y>452</y>
     </hint>
     <hint type="destinationlabel">
      <x>308</x>
@@ -1263,28 +1269,12 @@ background-color: rgb(255, 0, 0);
    <slot>OnAudioFilterChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>254</x>
-     <y>466</y>
+     <x>609</x>
+     <y>561</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
      <y>415</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBoxTxTrack</sender>
-   <signal>stateChanged(int)</signal>
-   <receiver>MainWindow</receiver>
-   <slot>OnTxTrackChanged(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>404</x>
-     <y>326</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>11</x>
-     <y>316</y>
     </hint>
    </hints>
   </connection>
@@ -1295,8 +1285,8 @@ background-color: rgb(255, 0, 0);
    <slot>OnNullNco()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>448</x>
-     <y>412</y>
+     <x>203</x>
+     <y>512</y>
     </hint>
     <hint type="destinationlabel">
      <x>618</x>
@@ -1311,8 +1301,8 @@ background-color: rgb(255, 0, 0);
    <slot>OnMemoryCheckChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>575</x>
-     <y>476</y>
+     <x>203</x>
+     <y>571</y>
     </hint>
     <hint type="destinationlabel">
      <x>502</x>
@@ -1327,8 +1317,8 @@ background-color: rgb(255, 0, 0);
    <slot>OnAlphaSpin(double)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>494</x>
-     <y>261</y>
+     <x>934</x>
+     <y>520</y>
     </hint>
     <hint type="destinationlabel">
      <x>635</x>
@@ -1343,8 +1333,8 @@ background-color: rgb(255, 0, 0);
    <slot>OnAutoScale()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>374</x>
-     <y>262</y>
+     <x>793</x>
+     <y>555</y>
     </hint>
     <hint type="destinationlabel">
      <x>623</x>
@@ -1359,11 +1349,27 @@ background-color: rgb(255, 0, 0);
    <slot>OnDemodChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>398</x>
-     <y>542</y>
+     <x>609</x>
+     <y>449</y>
     </hint>
     <hint type="destinationlabel">
      <x>390</x>
+     <y>302</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>antennaSelector</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>OnAntennaSelected(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>136</x>
+     <y>531</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>505</x>
      <y>302</y>
     </hint>
    </hints>
@@ -1394,5 +1400,6 @@ background-color: rgb(255, 0, 0);
   <slot>OnAlphaSpin(double)</slot>
   <slot>OnAutoScale()</slot>
   <slot>OnDemodChanged(int)</slot>
+  <slot>OnAntennaSelected(int)</slot>
  </slots>
 </ui>

@@ -80,6 +80,9 @@
      <bold>false</bold>
     </font>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::TabFocus</enum>
+   </property>
    <property name="toolTip">
     <string>TCP Control Port Number</string>
    </property>
@@ -132,7 +135,7 @@
     </font>
    </property>
    <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
+    <enum>Qt::TabFocus</enum>
    </property>
    <property name="toolTip">
     <string>TCP Control IP Address</string>
@@ -162,6 +165,9 @@
      <weight>50</weight>
      <bold>false</bold>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::TabFocus</enum>
    </property>
    <property name="text">
     <string/>
@@ -302,6 +308,9 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::TabFocus</enum>
+   </property>
    <property name="toolTip">
     <string>Find SDR's on WEB</string>
    </property>
@@ -431,6 +440,9 @@
      <bold>false</bold>
     </font>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::TabFocus</enum>
+   </property>
    <property name="text">
     <string/>
    </property>
@@ -448,9 +460,15 @@
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>lineEditClientDesc</tabstop>
+  <tabstop>lineEditDomain</tabstop>
   <tabstop>IPEditwidget_IP</tabstop>
+  <tabstop>pushButtonFind</tabstop>
   <tabstop>lineEdit_TCPPort</tabstop>
-  <tabstop>buttonBox</tabstop>
+  <tabstop>lineEditListServerUrl</tabstop>
+  <tabstop>lineEditListServerActionPath</tabstop>
+  <tabstop>lineEditRxPw</tabstop>
+  <tabstop>lineEditTxPw</tabstop>
  </tabstops>
  <resources/>
  <connections>

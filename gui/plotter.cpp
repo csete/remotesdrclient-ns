@@ -330,22 +330,9 @@ CPlotter::CPlotter(QWidget *parent) :
 	setAutoFillBackground(false);
 	setAttribute(Qt::WA_OpaquePaintEvent, false);
 	setAttribute(Qt::WA_NoSystemBackground, true);
-	setMouseTracking ( true );
+    setMouseTracking(true);
 
-#if 0
-	//create a default waterfall color scheme
-	// *** Need to read from file ***
-	for( int i=0; i<256; i++)
-	{
-        m_ColorTbl[i].setRgb(i, i, i);
-	}
-#else
-	int i;
-	int j;
-	for( i=0,j=0; i<256; i++,j+=3)
-		m_ColorTbl[255-i].setRgb( PALTBL[j], PALTBL[j+1], PALTBL[j+2] );
-
-#endif
+    setPalette(COLPAL_BLUE);
 
 	m_CenterFreq = 680000;
 	m_DemodHiCutFreq = 5000;
@@ -383,6 +370,34 @@ CPlotter::CPlotter(QWidget *parent) :
 
 CPlotter::~CPlotter()
 {
+}
+
+void CPlotter::setPalette(int pal)
+{
+    int     i;
+    int     j;
+
+    switch (pal)
+    {
+    default:
+    case COLPAL_DEFAULT:
+        for (i = 0, j = 0; i < 256; i++, j+=3)
+            m_ColorTbl[255-i].setRgb(PALTBL[j], PALTBL[j+1], PALTBL[j+2]);
+        break;
+
+    case COLPAL_GRAY:
+        for (i = 0; i < 256; i++)
+            m_ColorTbl[i].setRgb(i, i, i);
+        break;
+
+    case COLPAL_BLUE:
+
+        for (i = 0; i < 256-63; i++)
+            m_ColorTbl[i].setRgb(1+i, 1+i, 63+i);
+        for (i = 256-63; i< 256; i++)
+            m_ColorTbl[i].setRgb(i, i, 255);
+        break;
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -763,7 +778,7 @@ QPoint LineBuf[MAX_SCREENSIZE];
 	bool fftoverload = false;
 	if(m_ADOverLoad || fftoverload)
 	{
-		painter2.setPen( Qt::red );
+        painter2.setPen(Qt::red);
 		if(m_ADOverloadOneShotCounter++ > OVERLOAD_DISPLAY_LIMIT)
 		{
 			m_ADOverloadOneShotCounter = 0;
@@ -771,7 +786,8 @@ QPoint LineBuf[MAX_SCREENSIZE];
 		}
 	}
 	else
-		painter2.setPen( Qt::green );
+        //painter2.setPen(Qt::blue);
+        painter2.setPen(QColor(48, 48, 255, 255));
 	for(i=0; i<w; i++)
 	{
 		LineBuf[i].setX(i);
@@ -847,12 +863,12 @@ QRect rect;
 	//gradient.setColorAt(0, Qt::darkGreen);
 	//gradient.setColorAt(0, Qt::darkBlue);
 	//painter.setBrush(gradient);
-    painter.setBrush(Qt::SolidPattern);
+    painter.setBrush(QBrush(Qt::white, Qt::SolidPattern));
 	painter.drawRect(0, 0, w, h);
 
 	//Draw demod filter box
 	ClampDemodParameters();
-	if( DEMODDRAG != m_CursorCaptured)
+    if (DEMODDRAG != m_CursorCaptured)
 	{
 		m_CenterFreqX = XfromFreq(m_CenterFreq);
 		m_DemodLowCutFreqX = XfromFreq(m_CenterFreq + m_DemodLowCutFreq);
@@ -866,31 +882,31 @@ QRect rect;
 	}
 
 	//calculate position of Squelch Threshold position
-	m_MindB = m_MaxdB - (VERT_DIVS)*m_dBStepSize;
-	SquelchThresh = h*(m_SquelchThresholddB - m_MaxdB) / (m_MindB-m_MaxdB);
-	if(SquelchThresh < 0)
+    m_MindB = m_MaxdB - VERT_DIVS * m_dBStepSize;
+    SquelchThresh = h * (m_SquelchThresholddB - m_MaxdB) / (m_MindB-m_MaxdB);
+    if (SquelchThresh < 0)
 		SquelchThresh = 0;
-	if(SquelchThresh > h)
+    if (SquelchThresh > h)
 		SquelchThresh = h;
-	painter.setPen(QPen(Qt::yellow, 1,Qt::SolidLine));
+    painter.setPen(QPen(Qt::darkRed, 1,Qt::SolidLine));
 	painter.drawLine(m_DemodLowCutFreqX, SquelchThresh, m_DemodHiCutFreqX, SquelchThresh);
 
 	int dw = m_DemodHiCutFreqX - m_DemodLowCutFreqX;
 	painter.setBrush(Qt::SolidPattern);
-	painter.setOpacity(0.5);
-	painter.fillRect(m_DemodLowCutFreqX, 0,dw, h, Qt::gray);
+    painter.setOpacity(0.3);
+    painter.fillRect(m_DemodLowCutFreqX, 0,dw, h, Qt::lightGray);
 
-	painter.setPen(QPen(Qt::magenta, 2,Qt::DotLine));
+    painter.setPen(QPen(Qt::darkGray, 1, Qt::DotLine));
 	painter.drawLine(m_DemodLowCutFreqX, 0, m_DemodLowCutFreqX, h);
 	painter.drawLine(m_DemodHiCutFreqX, 0, m_DemodHiCutFreqX, h);
 
-	painter.setPen(QPen(Qt::blue, 1,Qt::DashLine));
+    painter.setPen(QPen(Qt::blue, 1, Qt::DashLine));
 	painter.drawLine(m_CenterFreqX, 0, m_CenterFreqX, h);
 	painter.setOpacity(1);
 
 	//create Font to use for scales
-	QFont Font("Arial");
-	Font.setPointSize(12);
+    QFont Font("Ubuntu");
+    Font.setPointSize(10);
 	QFontMetrics metrics(Font);
 	y = h/VERT_DIVS;
 	if(y<metrics.height())
@@ -898,25 +914,25 @@ QRect rect;
 	Font.setWeight(QFont::Normal);
 	painter.setFont(Font);
 
-	//draw vertical grids
+    // draw vertical grids
 	pixperdiv = (float)w / (float)HORZ_DIVS;
 	y = h - h/VERT_DIVS;
-	for( int i=1; i<HORZ_DIVS; i++)
+    for (int i = 1; i < HORZ_DIVS; i++)
 	{
-		x = (int)( 0.5 + (float)i*pixperdiv );
+        x = (int) (0.5 + (float) i * pixperdiv );
 		if(i==HORZ_DIVS/2)
-			painter.setPen(QPen(Qt::red, 1,Qt::DotLine));
+            painter.setPen(QPen(Qt::darkRed, 1, Qt::DotLine));
 		else
-			painter.setPen(QPen(Qt::white, 1,Qt::DotLine));
+            painter.setPen(QPen(Qt::lightGray, 1, Qt::DotLine));
 		painter.drawLine(x, 0, x , y);
 		painter.drawLine(x, h-5, x , h);
 	}
 //qDebug()<<"w = "<<w <<"center = "<<pixperdiv;
-	//draw frequency values
+    // draw frequency values
 	MakeFrequencyStrs();
-	painter.setPen(Qt::cyan);
+    painter.setPen(Qt::black);
 	y = h - (h/VERT_DIVS);
-	for( int i=0; i<=HORZ_DIVS; i++)
+    for (int i=0; i <= HORZ_DIVS; i++)
 	{
 		if(0==i)
 		{	//left justify the leftmost text
@@ -941,16 +957,16 @@ QRect rect;
 
 	//draw horizontal grids
 	pixperdiv = (float)h / (float)VERT_DIVS;
-	painter.setPen(QPen(Qt::white, 1,Qt::DotLine));
+    painter.setPen(QPen(Qt::lightGray, 1, Qt::DotLine));
 	for( int i=1; i<VERT_DIVS; i++)
 	{
 		y = (int)( (float)i*pixperdiv );
 		painter.drawLine(0, y, w, y);
 	}
 
-	//draw amplitude values
-	painter.setPen(Qt::yellow);
-	Font.setWeight(QFont::Light);
+    // draw amplitude values
+    painter.setPen(Qt::black);
+    //Font.setWeight(QFont::Light);
 	painter.setFont(Font);
 	int dB = m_MaxdB;
 	for( int i=0; i<VERT_DIVS-1; i++)

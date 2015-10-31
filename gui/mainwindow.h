@@ -101,6 +101,8 @@ private slots:
 	void OnTxTrackChanged(int);
 	void OnMemoryCheckChanged(int);
 
+    void OnAntennaSelected(int);
+
 	void NewSMeterValue(qint16 Val);
 	void OnNewVideoData();
 	void OnNewFftAvePwr(qint16 Val);

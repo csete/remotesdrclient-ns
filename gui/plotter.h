@@ -19,6 +19,11 @@
 #define MAX_SCREENSIZE 3000
 
 
+#define COLPAL_DEFAULT  0
+#define COLPAL_GRAY     1
+#define COLPAL_BLUE     2
+
+
 class CPlotter : public QFrame
 {
     Q_OBJECT
@@ -55,6 +60,7 @@ signals:
 	void NewWidth(int w);
 
 public slots:
+    void setPalette(int pal);
 
 protected:
 		//re-implemented widget event handlers

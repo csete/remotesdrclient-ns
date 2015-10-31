@@ -501,6 +501,17 @@ CAscpTxMsg TxAscpMsg;
 	SendAscpMsg(&TxAscpMsg);
 }
 
+// Select antenna
+void CSdrInterface::SetAntenna(int antenna)
+{
+    CAscpTxMsg TxAscpMsg;
+    TxAscpMsg.InitTxMsg(TYPE_HOST_SET_CITEM);
+    TxAscpMsg.AddCItem(0x30);
+    TxAscpMsg.AddParm8(0);
+    TxAscpMsg.AddParm8((quint8)antenna);
+    SendAscpMsg(&TxAscpMsg);
+}
+
 ////////////////////////////////////////////////////////////////////////
 // Send sdr rx demodulator filter parameters msg
 ////////////////////////////////////////////////////////////////////////
@@ -633,6 +644,7 @@ CAscpTxMsg TxAscpMsg;
 	SendAscpMsg(&TxAscpMsg);
 qDebug()<<"Send CAl";
 }
+
 
 ////////////////////////////////////////////////////////////////////////
 //  Called with new TCP message to parse from client thread context

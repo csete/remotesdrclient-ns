@@ -61,19 +61,19 @@ CFreqCtrl::CFreqCtrl(QWidget *parent) :
     setAutoFillBackground(false);
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	setFocusPolicy(Qt::StrongFocus);
-    setMouseTracking ( true );
+    setMouseTracking(true);
 	m_BkColor = Qt::black;
-	m_DigitColor = Qt::green;
-	m_HighlightColor = Qt::yellow;
-	m_UnitsColor = Qt::gray;
+    m_DigitColor = Qt::white;
+    m_HighlightColor = Qt::gray;
+    m_UnitsColor = Qt::white;
 	m_freq = 15000000;
 	Setup( 8, 1, 150000000U, 1, UNITS_MHZ);
 	m_Oldfreq = 0;
 	m_LastLeadZeroPos = 0;
 	m_ActiveEditDigit = -1;
     m_LRMouseFreqSel = false;
-    m_UnitsFont = QFont("Arial",8,QFont::Normal);
-    m_DigitFont = QFont("Arial",8,QFont::Normal);
+    m_UnitsFont = QFont("Arial", 8, QFont::Normal);
+    m_DigitFont = QFont("Arial", 8, QFont::Normal);
 }
 
 CFreqCtrl::~CFreqCtrl()
@@ -586,14 +586,14 @@ int sepwidth = (SEPRATIO_N*cellwidth)/(100*SEPRATIO_D);
 						rect.height());
 //draw units text
 	m_UnitsFont.setPixelSize( (UNITS_SIZE_PERCENT*rect.height())/100 );
-	m_UnitsFont.setFamily("Arial");
+    m_UnitsFont.setFamily("Arial");
 	Painter.setFont(m_UnitsFont );
 	Painter.setPen(m_UnitsColor);
 	Painter.drawText(m_UnitsRect, Qt::AlignHCenter|Qt::AlignVCenter, m_UnitString);
 
 
 	m_DigitFont.setPixelSize( (DIGIT_SIZE_PERCENT*rect.height())/100 );
-	m_DigitFont.setFamily("Arial");
+    m_DigitFont.setFamily("Arial");
 	Painter.setFont(m_DigitFont );
 	Painter.setPen(m_DigitColor);
 

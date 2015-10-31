@@ -1,3 +1,11 @@
+1.11-ns6:
+    - Add antenna selector.
+    - Remove PTT and TX Freq Track.
+
+1.11-ns5:
+    - More waterfall palettes.
+    - New FFT plot font and colors.
+
 1.11-ns4:
     - Move mode selector.
     - Don't use gradient in 2D plot.

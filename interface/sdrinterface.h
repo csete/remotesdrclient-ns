@@ -112,6 +112,8 @@ public:
 	void ParseAscpMsg(CAscpRxMsg *pMsg);
 	qint32 GetDataLatency() {return (qint32)m_CurrentLatency;}
 
+    void SetAntenna(int antenna);
+
 	int m_RxSpanMin;
 	int m_RxSpanMax;
 	int m_TxSpanMin;
