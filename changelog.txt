@@ -1,3 +1,6 @@
+1.11-ns7:
+    - Fix tab order in network config.
+
 1.11-ns6:
     - Add antenna selector.
     - Remove PTT and TX Freq Track.
