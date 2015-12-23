@@ -252,6 +252,9 @@
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEditRxPw">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>12</x>
@@ -276,6 +279,9 @@
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEditTxPw">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>12</x>
@@ -309,7 +315,7 @@
     </rect>
    </property>
    <property name="focusPolicy">
-    <enum>Qt::TabFocus</enum>
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="toolTip">
     <string>Find SDR's on WEB</string>
@@ -322,6 +328,9 @@
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEditListServerActionPath">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -362,6 +371,9 @@
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEditListServerUrl">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>0</x>
