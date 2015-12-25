@@ -113,15 +113,21 @@ void CMeter::resizeEvent(QResizeEvent* )
 	draw();
 }
 
-
 //////////////////////////////////////////////////////////////////////
 // Slot called to update meter Receiver level position
 //////////////////////////////////////////////////////////////////////
 void CMeter::SetdBmLevel(double dbm, bool Overload)
 {
-	m_dBm = (int)dbm;
-	m_Slevel = CalcPosFromdB(dbm);
-	if(m_Overload != Overload)
+    double m_dBm_d = m_dBm;
+
+    if (dbm > m_dBm_d)
+        m_dBm_d += 0.9 * (dbm - m_dBm_d);
+    else
+        m_dBm_d += 0.2 * (dbm - m_dBm_d);
+
+    m_dBm = (int) m_dBm_d;
+    m_Slevel = CalcPosFromdB(m_dBm_d);
+    if (m_Overload != Overload)
 	{
 		m_Overload = Overload;
 		DrawOverlay();
@@ -249,7 +255,7 @@ int h;
 	Font.setWeight(QFont::Normal);
 	painter.setFont(Font);
 
-	painter.setPen(Qt::black);
+    painter.setPen(Qt::white);
 	painter.setOpacity(1.0);
 	m_Str.setNum(m_dBm);
 	painter.drawText(marg, h-1, m_Str+" dBm" );
@@ -270,8 +276,9 @@ void CMeter::DrawOverlay()
 	QRect rect;
 	QPainter painter(&m_OverlayPixmap);
 
-	//fill background with gradient
-	QLinearGradient gradient(0, 0, 0 ,h);
+    // fill background with gradient
+#if 0
+    QLinearGradient gradient(0, 0, 0 ,h);
 	if(m_Overload)
 	{
 		gradient.setColorAt(1, Qt::white);
@@ -282,7 +289,12 @@ void CMeter::DrawOverlay()
 		gradient.setColorAt(1, Qt::cyan);
 		gradient.setColorAt(0, Qt::blue);
 	}
-	painter.setBrush(gradient);
+    painter.setBrush(gradient);
+#endif
+    if (m_Overload)
+        painter.setBrush(QBrush(Qt::darkRed, Qt::SolidPattern));
+    else
+        painter.setBrush(QBrush(Qt::black, Qt::SolidPattern));
 	painter.drawRect(0, 0, w, h);
 
 	//Draw scale lines
@@ -321,7 +333,7 @@ void CMeter::DrawOverlay()
 		painter.drawText(rect, Qt::AlignHCenter|Qt::AlignVCenter, m_Str);
 		rect.translate( rwidth,0);
 	}
-	painter.setPen(QPen(Qt::red, 1,Qt::SolidLine));
+    painter.setPen(QPen(Qt::red, 1,Qt::SolidLine));
 	for(x=20; x<=60; x+=20)
 	{
 		m_Str = "+" + m_Str.setNum(x);
