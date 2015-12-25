@@ -1,2 +1,2 @@
 build
-RemoteSdrClient.pro.user
+*.pro.user*
