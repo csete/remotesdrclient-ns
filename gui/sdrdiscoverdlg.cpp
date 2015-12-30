@@ -172,13 +172,13 @@ bool UseCommaSep = true;
 	{
 		qint64 ret;
 		int line=0;
-		bool respok = false;
-		bool datalines = false;
+        //bool respok = false;
+        //bool datalines = false;
 		do
 		{	//read http response from server one line at  time
 			UseCommaSep = true;
 			ret = m_pTcpClient->readLine(pBuf, 256);
-//qDebug()<<pBuf;
+qDebug()<< ret << " : " << pBuf;
 			if(ret>0)
 			{
 				pBuf[ret] = 0;	//zero terminate line
@@ -193,13 +193,15 @@ bool UseCommaSep = true;
 				}
 				line++;
 				//see if ever get fttp good response line
-				if( m_Str.contains("200 OK") )
-					respok = true;
-				if(respok)
-				{
-					if(datalines)
+
+                // if( m_Str.contains("200 OK") )
+                //	respok = true;
+                //if(respok)
+                //{
+                    //if(datalines)
 					{	//here if a data field line
 //qDebug()<<UseCommaSep;
+
 						if(UseCommaSep)
 						{
 							QStringList entry = m_Str.split(",");
@@ -212,9 +214,9 @@ bool UseCommaSep = true;
 						}
 					}
 					//if found data start string key "&&&"
-					if( m_Str.contains("&&&") )
-						datalines = true;
-				}
+                    //if( m_Str.contains("&&&") )
+                    //	datalines = true;
+                //}
 			}
 		}while(ret>0);
 	}
