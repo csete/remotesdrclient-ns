@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1012</width>
-    <height>611</height>
+    <height>599</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -41,16 +41,16 @@
      <number>4</number>
     </property>
     <property name="leftMargin">
-     <number>0</number>
+     <number>4</number>
     </property>
     <property name="topMargin">
-     <number>0</number>
+     <number>4</number>
     </property>
     <property name="rightMargin">
-     <number>0</number>
+     <number>4</number>
     </property>
     <property name="bottomMargin">
-     <number>0</number>
+     <number>4</number>
     </property>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
@@ -224,9 +224,9 @@
         <item>
          <widget class="QPushButton" name="pushButtonStart">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
-            <verstretch>3</verstretch>
+            <verstretch>0</verstretch>
            </sizepolicy>
           </property>
           <property name="minimumSize">
@@ -237,7 +237,6 @@
           </property>
           <property name="font">
            <font>
-            <pointsize>8</pointsize>
             <weight>75</weight>
             <bold>true</bold>
             <kerning>false</kerning>
@@ -260,7 +259,7 @@
         <item>
          <widget class="QSpinBox" name="spinBoxOffset">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -291,10 +290,16 @@
         <item>
          <widget class="QPushButton" name="pushButtonNcoSpur">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
           </property>
           <property name="text">
            <string>Null NCO</string>
@@ -303,6 +308,12 @@
         </item>
         <item>
          <widget class="QComboBox" name="antennaSelector">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="toolTip">
            <string>Select antenna</string>
           </property>
@@ -329,7 +340,7 @@
            <bool>true</bool>
           </property>
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -453,7 +464,7 @@
             <item>
              <widget class="QSpinBox" name="spinBoxAtten">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -613,11 +624,6 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <property name="font">
-            <font>
-             <pointsize>8</pointsize>
-            </font>
-           </property>
            <property name="currentIndex">
             <number>-1</number>
            </property>
@@ -753,11 +759,6 @@
          </item>
          <item row="2" column="1">
           <widget class="QComboBox" name="comboBoxVideoCompression">
-           <property name="font">
-            <font>
-             <pointsize>8</pointsize>
-            </font>
-           </property>
            <property name="currentIndex">
             <number>-1</number>
            </property>
@@ -807,13 +808,7 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QComboBox" name="comboBoxdBStep">
-           <property name="font">
-            <font>
-             <pointsize>8</pointsize>
-            </font>
-           </property>
-          </widget>
+          <widget class="QComboBox" name="comboBoxdBStep"/>
          </item>
          <item row="0" column="1">
           <widget class="QSpinBox" name="spinBoxSpan">
