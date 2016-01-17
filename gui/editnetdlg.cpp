@@ -107,6 +107,26 @@ CSdrDiscoverDlg dlg(this);
 	}
 }
 
+void CEditNetDlg::ListSdrs()
+{
+    CSdrDiscoverDlg     dlg(this);
+
+    dlg.SetListServer("test.oz9aec.net");
+    dlg.SetListServerActionPath("/servers.txt");
+    dlg.InitDlg();
+    if (dlg.exec())
+    {
+        m_DomainName = dlg.m_DomainName;
+        m_IPAdr = dlg.m_IPAdr;
+        m_Port = dlg.m_Port;
+        ui->IPEditwidget_IP->SetIP(m_IPAdr.toIPv4Address());
+        ui->lineEdit_TCPPort->setText(QString().number(m_Port));
+        ui->lineEditDomain->setText(m_DomainName);
+        if (!dlg.m_NeedPW)
+            ui->lineEditRxPw->setText("");
+    }
+}
+
 //Called when OK button pressed so get all the dialog data
 void CEditNetDlg::accept()
 {	//OK was pressed so get all data from edit controls

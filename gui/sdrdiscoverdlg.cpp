@@ -166,9 +166,10 @@ qDebug()<<"Timeout Close State "<<m_pTcpClient->state();
 //////////////////////////////////////////////////////////////////////////////
 void CSdrDiscoverDlg::ReadTcpClientData()
 {
-char pBuf[10000];
-bool UseCommaSep = true;
-	if( QAbstractSocket::ConnectedState == m_pTcpClient->state())
+    char pBuf[10000];
+    bool UseCommaSep = true;
+
+    if (QAbstractSocket::ConnectedState == m_pTcpClient->state())
 	{
 		qint64 ret;
 		int line=0;
@@ -178,12 +179,14 @@ bool UseCommaSep = true;
 		{	//read http response from server one line at  time
 			UseCommaSep = true;
 			ret = m_pTcpClient->readLine(pBuf, 256);
-qDebug()<< ret << " : " << pBuf;
-			if(ret>0)
+
+            qDebug()<< ret << " : " << pBuf;
+
+            if (ret >0)
 			{
 				pBuf[ret] = 0;	//zero terminate line
 				m_Str = pBuf;
-				for(int i=0; i<m_Str.length(); i++)
+                for (int i = 0; i < m_Str.length(); i++)
 				{
 					if( '\v' == pBuf[i])
 					{
@@ -202,14 +205,14 @@ qDebug()<< ret << " : " << pBuf;
 					{	//here if a data field line
 //qDebug()<<UseCommaSep;
 
-						if(UseCommaSep)
+                        if (UseCommaSep)
 						{
 							QStringList entry = m_Str.split(",");
 							PutEntryInTable(entry);
 						}
 						else
 						{
-							QStringList entry = m_Str.split("\v");//change field delimitor to VT
+                            QStringList entry = m_Str.split("\v") ;//change field delimitor to VT
 							PutEntryInTable(entry);
 						}
 					}
@@ -218,7 +221,7 @@ qDebug()<< ret << " : " << pBuf;
                     //	datalines = true;
                 //}
 			}
-		}while(ret>0);
+        } while (ret > 0);
 	}
 }
 
