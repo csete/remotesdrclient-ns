@@ -38,7 +38,6 @@ public:
 	void SetRunningState(bool running){m_Running = running;}
 	void SetClickResolution(int clickres){m_ClickResolution=clickres;}
 	void SetFilterClickResolution(int clickres){m_FilterClickResolution=clickres;}
-	void SetPercent2DScreen(int percent){m_Percent2DScreen=percent;	m_Size = QSize(0,0);resizeEvent(NULL);}
 	void ProcNewData();				//call to draw new fft data onto screen plot
 	void SetCenterFreq(quint64 f){m_CenterFreq=f;}
 	void SetHiLowCutFrequencies(int LowCut, int HiCut){m_DemodLowCutFreq = LowCut; m_DemodHiCutFreq = HiCut;}
@@ -61,6 +60,11 @@ signals:
 
 public slots:
     void setPalette(int pal);
+    void SetPercent2DScreen(int percent) {
+        m_Percent2DScreen = percent;
+        m_Size = QSize(0,0);
+        resizeEvent(NULL);
+    }
 
 protected:
 		//re-implemented widget event handlers

@@ -142,6 +142,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(ui->frameDecay, SIGNAL(sliderValChanged(int)), this, SLOT(OnAgcDecay(int)));
 	connect(ui->frameFreqCtrl, SIGNAL(NewFrequency(qint64)), this, SLOT(OnNewCenterFrequency(qint64)));
 
+    connect(ui->splitSlider, SIGNAL(valueChanged(int)), ui->framePlot, SLOT(SetPercent2DScreen(int)));
     connect(ui->colorSelector, SIGNAL(currentIndexChanged(int)), ui->framePlot, SLOT(setPalette(int)));
 
 	connect(ui->framePlot, SIGNAL(NewWidth(int)), this, SLOT(OnNewWidth(int)));
@@ -243,7 +244,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui->spinBoxSpan->setValue(m_RxSpanFreq);
 
 	m_SpanFreq = m_RxSpanFreq;
-	ui->framePlot->SetPercent2DScreen(35);
+    ui->framePlot->SetPercent2DScreen(ui->splitSlider->value());
 	ui->framePlot->SetSpanFreq( m_SpanFreq );
 	ui->framePlot->SetClickResolution(m_DemodSettings[m_DemodMode].ClickResolution);
 	ui->framePlot->SetdBStepSize(ui->comboBoxdBStep->itemData(m_dBStepIndex).toInt());
