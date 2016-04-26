@@ -85,12 +85,12 @@ CFreqCtrl::~CFreqCtrl()
 /////////////////////////////////////////////////////////////////////
 QSize CFreqCtrl::minimumSizeHint() const
 {
-	return QSize(100, 20);
+    return QSize(200, 30);
 }
 
 QSize CFreqCtrl::sizeHint() const
 {
-	return QSize(100, 20);
+    return QSize(200, 30);
 }
 
 /////////////////////////////////////////////////////////////////////
