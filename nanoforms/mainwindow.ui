@@ -63,7 +63,7 @@
       <widget class="CPlotter" name="framePlot">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
+         <horstretch>5</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
@@ -89,7 +89,7 @@
         <enum>QFrame::Raised</enum>
        </property>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <property name="spacing">
          <number>1</number>
@@ -194,7 +194,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>367</width>
+             <width>237</width>
              <height>931</height>
             </rect>
            </property>
