@@ -212,30 +212,30 @@ MainWindow::MainWindow(QWidget *parent) :
 	m_dBMax = -m_dBMaxIndex*m_dBStepSize;
 	if(10 == m_dBStepSize)
 	{
-		ui->verticalScrollBar_dBOffset->setMinimum(-5);
-		ui->verticalScrollBar_dBOffset->setMaximum(7);
+        ui->dBOffsetSlider->setMinimum(-5);
+        ui->dBOffsetSlider->setMaximum(7);
 	}
 	else if(5 == m_dBStepSize)
 	{
-		ui->verticalScrollBar_dBOffset->setMinimum(0);
-		ui->verticalScrollBar_dBOffset->setMaximum(27);
-	}
+        ui->dBOffsetSlider->setMinimum(0);
+        ui->dBOffsetSlider->setMaximum(27);
+    }
 	else if(3 == m_dBStepSize)
 	{
-		ui->verticalScrollBar_dBOffset->setMinimum(0);
-		ui->verticalScrollBar_dBOffset->setMaximum(47);
-	}
+        ui->dBOffsetSlider->setMinimum(0);
+        ui->dBOffsetSlider->setMaximum(47);
+    }
 	else if(2 == m_dBStepSize)
 	{
-		ui->verticalScrollBar_dBOffset->setMinimum(0);
-		ui->verticalScrollBar_dBOffset->setMaximum(70);
-	}
+        ui->dBOffsetSlider->setMinimum(0);
+        ui->dBOffsetSlider->setMaximum(70);
+    }
 	else if(1 == m_dBStepSize)
 	{
-		ui->verticalScrollBar_dBOffset->setMinimum(0);
-		ui->verticalScrollBar_dBOffset->setMaximum(140);
-	}
-	ui->verticalScrollBar_dBOffset->setValue(m_dBMaxIndex);
+        ui->dBOffsetSlider->setMinimum(0);
+        ui->dBOffsetSlider->setMaximum(150);
+    }
+    ui->dBOffsetSlider->setValue(m_dBMaxIndex);
 
 	ui->spinBoxAve->setValue(m_FftAve);
 	ui->spinBoxRate->setValue(m_FftRate);
@@ -1398,29 +1398,29 @@ void MainWindow::OnStepSizeChanged(int index)
 
 	if(10 == m_dBStepSize)
 	{
-		ui->verticalScrollBar_dBOffset->setMinimum(-5);
-		ui->verticalScrollBar_dBOffset->setMaximum(7);
+        ui->dBOffsetSlider->setMinimum(-5);
+        ui->dBOffsetSlider->setMaximum(7);
 	}
 	else if(5 == m_dBStepSize)
 	{
-		ui->verticalScrollBar_dBOffset->setMinimum(0);
-		ui->verticalScrollBar_dBOffset->setMaximum(27);
-	}
+        ui->dBOffsetSlider->setMinimum(0);
+        ui->dBOffsetSlider->setMaximum(27);
+    }
 	else if(3 == m_dBStepSize)
 	{
-		ui->verticalScrollBar_dBOffset->setMinimum(0);
-		ui->verticalScrollBar_dBOffset->setMaximum(47);
-	}
+        ui->dBOffsetSlider->setMinimum(0);
+        ui->dBOffsetSlider->setMaximum(47);
+    }
 	else if(2 == m_dBStepSize)
 	{
-		ui->verticalScrollBar_dBOffset->setMinimum(0);
-		ui->verticalScrollBar_dBOffset->setMaximum(70);
-	}
+        ui->dBOffsetSlider->setMinimum(0);
+        ui->dBOffsetSlider->setMaximum(70);
+    }
 	else if(1 == m_dBStepSize)
 	{
-		ui->verticalScrollBar_dBOffset->setMinimum(0);
-		ui->verticalScrollBar_dBOffset->setMaximum(140);
-	}
+        ui->dBOffsetSlider->setMinimum(0);
+        ui->dBOffsetSlider->setMaximum(140);
+    }
 	//adjust m_dBMax to try and keep signal roughly centered at bottom of screen
 	if(m_dBStepSize!=LastdBStepsize)
 	{
@@ -1428,7 +1428,7 @@ void MainWindow::OnStepSizeChanged(int index)
 		m_dBMax = (m_dBMax/m_dBStepSize)*m_dBStepSize;
 		m_dBMaxIndex = -m_dBMax / m_dBStepSize;
 	}
-	ui->verticalScrollBar_dBOffset->setValue(m_dBMaxIndex);
+    ui->dBOffsetSlider->setValue(m_dBMaxIndex);
 
 	ui->framePlot->SetdBStepSize(m_dBStepSize);
 	ui->framePlot->SetMaxdB(m_dBMax);
@@ -1512,7 +1512,7 @@ void MainWindow::OnNewFftAvePwr(qint16 Val)
 {
 	int newMax = Val/100 + (m_dBStepSize*(VERT_DIVS-2));	//put signal baseline 2 divisions above bottom.
 	m_dBMaxIndex = (-newMax/m_dBStepSize);
-	ui->verticalScrollBar_dBOffset->setValue(m_dBMaxIndex);
+    ui->dBOffsetSlider->setValue(m_dBMaxIndex);
 //qDebug()<<"FFT AvePwr="<<Val <<"m_dBMax="<<m_dBMax<<" dBMin="<<m_dBMax - (m_dBStepSize*VERT_DIVS);
 //qDebug()<<"newMax="<<newMax<<" m_dBMaxIndex="<<m_dBMaxIndex;
 }
@@ -1610,7 +1610,7 @@ tMem_Record Tmp;
 	m_pMemDialog->GetRecord(Tmp);
 	ui->frameFreqCtrl->SetFrequency(Tmp.RxCenterFrequency);
 	ui->comboBoxdBStep->setCurrentIndex(Tmp.dBStepIndex);
-	ui->verticalScrollBar_dBOffset->setValue(Tmp.dBMaxIndex);
+    ui->dBOffsetSlider->setValue(Tmp.dBMaxIndex);
 	ui->spinBoxAve->setValue(Tmp.FftAve);
 	ui->spinBoxRate->setValue(Tmp.FftRate);
 	ui->spinBoxAtten->setValue(Tmp.RfGain);
