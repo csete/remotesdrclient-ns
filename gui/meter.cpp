@@ -60,13 +60,13 @@ CMeter::CMeter(QWidget *parent) :
 	QFrame(parent)
 {
 	m_Overload = false;
-	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-	setFocusPolicy(Qt::StrongFocus);
-	setAttribute(Qt::WA_PaintOnScreen,false);
-	setAutoFillBackground(false);
-	setAttribute(Qt::WA_OpaquePaintEvent, false);
-	setAttribute(Qt::WA_NoSystemBackground, true);
-	setMouseTracking ( true );
+    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    //setFocusPolicy(Qt::StrongFocus);
+    //setAttribute(Qt::WA_PaintOnScreen,false);
+    //setAutoFillBackground(false);
+    //setAttribute(Qt::WA_OpaquePaintEvent, false);
+    //setAttribute(Qt::WA_NoSystemBackground, true);
+    //setMouseTracking(true);
 
 	m_Pixmap = QPixmap(0,0);
 	m_OverlayPixmap = QPixmap(0,0);
@@ -85,7 +85,7 @@ CMeter::~CMeter()
 //////////////////////////////////////////////////////////////////////
 QSize CMeter::minimumSizeHint() const
 {
-	return QSize(10, 10);
+    return QSize(35, 10);
 }
 
 QSize CMeter::sizeHint() const
@@ -101,13 +101,13 @@ void CMeter::resizeEvent(QResizeEvent* )
 {
 	if(!size().isValid())
 		return;
-	if( m_Size != size() )
+    if( m_Size != size() )
 	{	//if size changed, resize pixmaps to new screensize
 		m_Size = size();
 		m_OverlayPixmap = QPixmap(m_Size.width(), m_Size.height());
-		m_OverlayPixmap.fill(Qt::black);
+        m_OverlayPixmap.fill(Qt::white);
 		m_Pixmap = QPixmap(m_Size.width(), m_Size.height());
-		m_Pixmap.fill(Qt::black);
+        m_Pixmap.fill(Qt::white);
 	}
 	DrawOverlay();
 	draw();
@@ -248,14 +248,13 @@ int h;
 	painter.drawPolygon(pts,3);
 
 	//create Font to use for scales
-	QFont Font("Arial");
-	QFontMetrics metrics(Font);
+    QFont Font;
 	int y = (h)/3;
 	Font.setPixelSize(y);
 	Font.setWeight(QFont::Normal);
 	painter.setFont(Font);
 
-    painter.setPen(Qt::white);
+    painter.setPen(QColor(0xFF1F1D1D));
 	painter.setOpacity(1.0);
 	m_Str.setNum(m_dBm);
 	painter.drawText(marg, h-1, m_Str+" dBm" );
@@ -294,7 +293,7 @@ void CMeter::DrawOverlay()
     if (m_Overload)
         painter.setBrush(QBrush(Qt::darkRed, Qt::SolidPattern));
     else
-        painter.setBrush(QBrush(Qt::black, Qt::SolidPattern));
+        painter.setBrush(QBrush(Qt::white, Qt::SolidPattern));
 	painter.drawRect(0, 0, w, h);
 
 	//Draw scale lines
@@ -303,8 +302,8 @@ void CMeter::DrawOverlay()
 	qreal majstart = (qreal)h*CTRL_MAJOR_START;
 	qreal minstart = (qreal)h*CTRL_MINOR_START;
 	qreal hstop = (qreal)w-marg;
-	painter.setPen(QPen(Qt::white, 1,Qt::SolidLine));
-	painter.drawLine( QLineF( marg, hline, hstop, hline) );
+    painter.setPen(QPen(QColor(0xFF1F1D1D), 1, Qt::SolidLine));
+    painter.drawLine(QLineF( marg, hline, hstop, hline));
 	qreal xpos = marg;
 	for(x=0; x<15; x++)
 	{
@@ -318,7 +317,7 @@ void CMeter::DrawOverlay()
 
 	//draw scale text
 	//create Font to use for scales
-	QFont Font("Arial");
+    QFont Font;
 //	QFontMetrics metrics(Font);
 	y = h/4;
 	Font.setPixelSize(y);
@@ -333,7 +332,7 @@ void CMeter::DrawOverlay()
 		painter.drawText(rect, Qt::AlignHCenter|Qt::AlignVCenter, m_Str);
 		rect.translate( rwidth,0);
 	}
-    painter.setPen(QPen(Qt::red, 1,Qt::SolidLine));
+    painter.setPen(QPen(Qt::darkRed, 1, Qt::SolidLine));
 	for(x=20; x<=60; x+=20)
 	{
 		m_Str = "+" + m_Str.setNum(x);
@@ -341,7 +340,7 @@ void CMeter::DrawOverlay()
 		rect.translate( rwidth,0);
 	}
 	//Draw Squelch Threshold Position thingy
-	painter.setPen(QPen(Qt::red, 2,Qt::SolidLine));
+    painter.setPen(QPen(Qt::darkRed, 2, Qt::SolidLine));
 	painter.drawEllipse( marg + m_SquelchPos-1, majstart, 2, 2 );
 }
 

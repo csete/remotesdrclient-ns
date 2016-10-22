@@ -58,14 +58,14 @@
 CFreqCtrl::CFreqCtrl(QWidget *parent) :
 	QFrame(parent)
 {
-    setAutoFillBackground(false);
+    //setAutoFillBackground(false);
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	setFocusPolicy(Qt::StrongFocus);
     setMouseTracking(true);
-	m_BkColor = Qt::black;
+    m_BkColor = Qt::black;
     m_DigitColor = Qt::white;
     m_HighlightColor = Qt::gray;
-    m_UnitsColor = Qt::white;
+    m_UnitsColor = Qt::gray;
 	m_freq = 15000000;
 	Setup( 8, 1, 150000000U, 1, UNITS_MHZ);
 	m_Oldfreq = 0;
@@ -350,7 +350,7 @@ void CFreqCtrl::resizeEvent(QResizeEvent* )
 {
 //qDebug() <<rect.width() << rect.height();
 	m_Pixmap = QPixmap(size());		//resize pixmap to current control size
-	m_Pixmap.fill(Qt::black);
+    m_Pixmap.fill(m_BkColor);
     m_UpdateAll = true;
 }
 

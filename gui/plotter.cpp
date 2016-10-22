@@ -325,11 +325,11 @@ CPlotter::CPlotter(QWidget *parent) :
 {
 	m_pSdrInterface = NULL;
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-	setFocusPolicy(Qt::StrongFocus);
-	setAttribute(Qt::WA_PaintOnScreen,false);
-	setAutoFillBackground(false);
-	setAttribute(Qt::WA_OpaquePaintEvent, false);
-	setAttribute(Qt::WA_NoSystemBackground, true);
+    //setFocusPolicy(Qt::StrongFocus);
+    //setAttribute(Qt::WA_PaintOnScreen,false);
+    //setAutoFillBackground(false);
+    //setAttribute(Qt::WA_OpaquePaintEvent, false);
+    //setAttribute(Qt::WA_NoSystemBackground, true);
     setMouseTracking(true);
 
     setPalette(COLPAL_BLUE);
@@ -694,13 +694,13 @@ void CPlotter::resizeEvent(QResizeEvent* )
 	{	//if changed, resize pixmaps to new screensize
 		m_Size = size();
 		m_OverlayPixmap = QPixmap(m_Size.width(), m_Percent2DScreen*m_Size.height()/100);
-		m_OverlayPixmap.fill(Qt::black);
+        m_OverlayPixmap.fill(Qt::white);
 		m_2DPixmap = QPixmap(m_Size.width(), m_Percent2DScreen*m_Size.height()/100);
-		m_2DPixmap.fill(Qt::black);
+        m_2DPixmap.fill(Qt::white);
 		m_WaterfallPixmap = QPixmap(m_Size.width(), (100-m_Percent2DScreen)*m_Size.height()/100);
 		emit NewWidth(m_Size.width());
 	}
-	m_WaterfallPixmap.fill(Qt::black);
+    m_WaterfallPixmap.fill(Qt::black);
 	DrawOverlay();
 }
 
@@ -856,7 +856,7 @@ QRect rect;
 	QPainter painter(&m_OverlayPixmap);
 	painter.initFrom(this);
 
-	//m_OverlayPixmap.fill(Qt::black);
+    //m_OverlayPixmap.fill(Qt::white);
 	//fill background with gradient
 	//QLinearGradient gradient(0, 0, 0 ,h);
 	//gradient.setColorAt(1, Qt::black);
@@ -905,7 +905,7 @@ QRect rect;
 	painter.setOpacity(1);
 
 	//create Font to use for scales
-    QFont Font("Ubuntu");
+    QFont Font;
     Font.setPointSize(10);
 	QFontMetrics metrics(Font);
 	y = h/VERT_DIVS;
@@ -917,13 +917,10 @@ QRect rect;
     // draw vertical grids
 	pixperdiv = (float)w / (float)HORZ_DIVS;
 	y = h - h/VERT_DIVS;
+    painter.setPen(QPen(Qt::lightGray, 1, Qt::DotLine));
     for (int i = 1; i < HORZ_DIVS; i++)
 	{
         x = (int) (0.5 + (float) i * pixperdiv );
-		if(i==HORZ_DIVS/2)
-            painter.setPen(QPen(Qt::darkRed, 1, Qt::DotLine));
-		else
-            painter.setPen(QPen(Qt::lightGray, 1, Qt::DotLine));
 		painter.drawLine(x, 0, x , y);
 		painter.drawLine(x, h-5, x , h);
 	}

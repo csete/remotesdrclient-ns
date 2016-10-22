@@ -152,10 +152,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	//setup frequency control
 	ui->frameFreqCtrl->Setup(10, 0U, 3000000000UL, 1, UNITS_MHZ );
-    ui->frameFreqCtrl->SetBkColor(Qt::black);
-    ui->frameFreqCtrl->SetDigitColor(Qt::white);
-    ui->frameFreqCtrl->SetUnitsColor(Qt::white);
-    ui->frameFreqCtrl->SetHighlightColor(Qt::gray);
+    ui->frameFreqCtrl->SetBkColor(Qt::white);
+    ui->frameFreqCtrl->SetDigitColor(QColor(0xFF1F1D1D));
+    ui->frameFreqCtrl->SetUnitsColor(QColor(0xFF1F1D1D));
+    ui->frameFreqCtrl->SetHighlightColor(QColor(0xFFDFDEDE));
 	ui->frameFreqCtrl->SetFrequency(m_RxCenterFrequency);
 
 	ui->framePlot->SetVideoMode(m_VideoCompressionIndex);
@@ -848,8 +848,8 @@ void MainWindow::OnButtonPtt(bool state)
 	if(state)
 	{	//try to start Transmit mode
 		m_pSdrInterface->SetPTT(CI_TX_STATE_ON );
-		ui->frameFreqCtrl->SetDigitColor(Qt::red);
-		ui->frameFreqCtrl->SetUnitsColor(Qt::darkRed);
+        //ui->frameFreqCtrl->SetDigitColor(Qt::red);
+        //ui->frameFreqCtrl->SetUnitsColor(Qt::darkRed);
 		ui->frameFreqCtrl->Setup(10, m_pSdrInterface->m_pTxFrequencyRangeMin[0], m_pSdrInterface->m_pTxFrequencyRangeMax[0], 1, UNITS_MHZ );
 		ui->framePlot->SetCenterFreq( m_TxCenterFrequency );
 		ui->frameFreqCtrl->SetFrequency(m_TxCenterFrequency);
@@ -859,8 +859,8 @@ void MainWindow::OnButtonPtt(bool state)
 	{
 		m_pSdrInterface->SetPTT(CI_TX_STATE_OFF);
 		m_pSdrInterface->StopAudioIn();
-        ui->frameFreqCtrl->SetDigitColor(Qt::white);
-        ui->frameFreqCtrl->SetUnitsColor(Qt::white);
+        //ui->frameFreqCtrl->SetDigitColor(Qt::white);
+        //ui->frameFreqCtrl->SetUnitsColor(Qt::white);
 		ui->framePlot->SetCenterFreq( m_RxCenterFrequency );
 		ui->frameFreqCtrl->Setup(10, m_pSdrInterface->m_pRxFrequencyRangeMin[0], m_pSdrInterface->m_pRxFrequencyRangeMax[0], 1, UNITS_MHZ );
 		ui->frameFreqCtrl->SetFrequency(m_RxCenterFrequency);
@@ -879,8 +879,8 @@ void MainWindow::OnDigitalPtt(bool state)
 	if(state)
 	{	//try to start Transmit mode
 		m_pSdrInterface->SetPTT(CI_TX_STATE_ON );
-		ui->frameFreqCtrl->SetDigitColor(Qt::red);
-		ui->frameFreqCtrl->SetUnitsColor(Qt::darkRed);
+        //ui->frameFreqCtrl->SetDigitColor(Qt::red);
+        //ui->frameFreqCtrl->SetUnitsColor(Qt::darkRed);
 		ui->frameFreqCtrl->Setup(10, m_pSdrInterface->m_pTxFrequencyRangeMin[0], m_pSdrInterface->m_pTxFrequencyRangeMax[0], 1, UNITS_MHZ );
 		ui->framePlot->SetCenterFreq( m_TxCenterFrequency );
 		ui->frameFreqCtrl->SetFrequency(m_TxCenterFrequency);
@@ -893,8 +893,8 @@ void MainWindow::OnDigitalPtt(bool state)
 		else
 			m_pSdrInterface->SetPTT(CI_TX_STATE_OFF );
 		m_pSdrInterface->StopAudioIn();
-		ui->frameFreqCtrl->SetDigitColor(Qt::cyan);
-		ui->frameFreqCtrl->SetUnitsColor(Qt::lightGray);
+        //ui->frameFreqCtrl->SetDigitColor(Qt::cyan);
+        //ui->frameFreqCtrl->SetUnitsColor(Qt::lightGray);
 		ui->framePlot->SetCenterFreq( m_RxCenterFrequency );
 		ui->frameFreqCtrl->Setup(10, m_pSdrInterface->m_pRxFrequencyRangeMin[0], m_pSdrInterface->m_pRxFrequencyRangeMax[0], 1, UNITS_MHZ );
 		ui->frameFreqCtrl->SetFrequency(m_RxCenterFrequency);

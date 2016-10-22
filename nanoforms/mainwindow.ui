@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>848</width>
-    <height>593</height>
+    <width>919</width>
+    <height>677</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -37,17 +37,20 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_6">
-    <property name="leftMargin">
-     <number>1</number>
-    </property>
-    <property name="topMargin">
+    <property name="spacing">
      <number>5</number>
     </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
     <property name="rightMargin">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="bottomMargin">
-     <number>1</number>
+     <number>0</number>
     </property>
     <item>
      <widget class="QSplitter" name="splitter">
@@ -60,6 +63,9 @@
          <horstretch>10</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -78,7 +84,7 @@
          <number>0</number>
         </property>
         <property name="topMargin">
-         <number>0</number>
+         <number>5</number>
         </property>
         <property name="rightMargin">
          <number>0</number>
@@ -89,7 +95,10 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <property name="spacing">
-           <number>15</number>
+           <number>5</number>
+          </property>
+          <property name="sizeConstraint">
+           <enum>QLayout::SetMinimumSize</enum>
           </property>
           <item>
            <spacer name="horizontalSpacer">
@@ -122,10 +131,10 @@
              <string>Demod Center Frequency</string>
             </property>
             <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
+             <enum>QFrame::Box</enum>
             </property>
             <property name="frameShadow">
-             <enum>QFrame::Sunken</enum>
+             <enum>QFrame::Plain</enum>
             </property>
             <property name="lineWidth">
              <number>1</number>
@@ -160,13 +169,7 @@
              </size>
             </property>
             <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Sunken</enum>
-            </property>
-            <property name="lineWidth">
-             <number>1</number>
+             <enum>QFrame::Box</enum>
             </property>
            </widget>
           </item>
@@ -209,13 +212,7 @@
            <string/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <property name="lineWidth">
-           <number>1</number>
+           <enum>QFrame::Box</enum>
           </property>
          </widget>
         </item>
@@ -1173,7 +1170,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>848</width>
+     <width>919</width>
      <height>20</height>
     </rect>
    </property>
