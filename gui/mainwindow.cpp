@@ -1880,14 +1880,14 @@ void MainWindow::InitDemodSettings()
 	m_DemodSettings[DEMOD_MODE_RAW].DefAgcThresh = -120;
 	m_DemodSettings[DEMOD_MODE_RAW].DefAudioFilter = 0;
 
-	ui->frameThresh->SetName("Thresh");
+    ui->frameThresh->SetName("Knee");
 	ui->frameThresh->SetSuffix(" dB");
 	ui->frameThresh->setRange(-120, -20);
-	ui->frameThresh->setSingleStep(5);
+    ui->frameThresh->setSingleStep(1);
 	ui->frameThresh->setPageStep(5);
     ui->frameThresh->setTickInterval(10);
 
-	ui->frameDecay->SetName("Decay");
+    ui->frameDecay->SetName("Dec");
 	ui->frameDecay->SetSuffix(" mS");
 	ui->frameDecay->setRange(20, 2000);
 	ui->frameDecay->setSingleStep(10);
