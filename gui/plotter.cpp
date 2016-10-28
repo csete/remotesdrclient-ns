@@ -701,7 +701,7 @@ void CPlotter::resizeEvent(QResizeEvent* )
 		emit NewWidth(m_Size.width());
 	}
     m_WaterfallPixmap.fill(Qt::black);
-	DrawOverlay();
+    DrawOverlay();
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -856,13 +856,7 @@ QRect rect;
 	QPainter painter(&m_OverlayPixmap);
 	painter.initFrom(this);
 
-    //m_OverlayPixmap.fill(Qt::white);
-	//fill background with gradient
-	//QLinearGradient gradient(0, 0, 0 ,h);
-	//gradient.setColorAt(1, Qt::black);
-	//gradient.setColorAt(0, Qt::darkGreen);
-	//gradient.setColorAt(0, Qt::darkBlue);
-	//painter.setBrush(gradient);
+    painter.setPen(Qt::white);      // needed to avoid black line on left and upper sides
     painter.setBrush(QBrush(Qt::white, Qt::SolidPattern));
 	painter.drawRect(0, 0, w, h);
 

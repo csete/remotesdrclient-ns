@@ -290,6 +290,7 @@ void CMeter::DrawOverlay()
 	}
     painter.setBrush(gradient);
 #endif
+    painter.setPen(Qt::white);      // needed to avoid black line on left and upper sides
     if (m_Overload)
         painter.setBrush(QBrush(Qt::darkRed, Qt::SolidPattern));
     else
