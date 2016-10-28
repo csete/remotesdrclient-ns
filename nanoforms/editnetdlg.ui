@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>440</width>
-    <height>457</height>
+    <width>470</width>
+    <height>492</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -308,8 +308,8 @@
   <widget class="QPushButton" name="pushButtonFind">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>160</y>
+     <x>330</x>
+     <y>130</y>
      <width>91</width>
      <height>31</height>
     </rect>
@@ -462,28 +462,6 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButtonList">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>120</y>
-     <width>91</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
-   </property>
-   <property name="toolTip">
-    <string>List nanosdr servers</string>
-   </property>
-   <property name="text">
-    <string>Servers</string>
-   </property>
-   <property name="flat">
-    <bool>false</bool>
-   </property>
-  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -551,22 +529,6 @@
     <hint type="destinationlabel">
      <x>348</x>
      <y>132</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButtonList</sender>
-   <signal>clicked()</signal>
-   <receiver>CEditNetDlg</receiver>
-   <slot>ListSdrs()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>365</x>
-     <y>135</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>219</x>
-     <y>228</y>
     </hint>
    </hints>
   </connection>

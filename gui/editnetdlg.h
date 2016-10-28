@@ -73,7 +73,6 @@ signals:
 public slots:
 	void accept();
     void FindSdrs();
-    void ListSdrs();
 
 private:
 	Ui::CEditNetDlg *ui;
