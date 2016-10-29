@@ -918,8 +918,7 @@ void CPlotter::DrawOverlay()
     {
         x = (int)( (float) i * pixperdiv - pixperdiv/2);
         rect.setRect(x ,y, (int)pixperdiv, h / VERT_DIVS);
-        painter.drawText(rect, Qt::AlignHCenter | Qt::AlignVCenter,
-                         m_HDivText[i]);
+        painter.drawText(rect, Qt::AlignCenter, m_HDivText[i]);
     }
 
     // draw horizontal grids
@@ -937,8 +936,8 @@ void CPlotter::DrawOverlay()
     int dB = m_MaxdB;
     for (int i = 0; i < VERT_DIVS - 1; i++)
     {
-        y = (int)( (float) i * pixperdiv);
-        painter.drawStaticText(5, y - 1, QString::number(dB)+" dB");
+        y = (int)((float) i * pixperdiv);
+        painter.drawStaticText(5, y, QString::number(dB) + " dB");
         dB -= m_dBStepSize;
     }
 
