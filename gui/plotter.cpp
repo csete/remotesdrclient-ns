@@ -914,29 +914,12 @@ void CPlotter::DrawOverlay()
     MakeFrequencyStrs();
     painter.setPen(Qt::black);
     y = h - (h/VERT_DIVS);
-    for (int i = 0; i <= HORZ_DIVS; i++)
+    for (int i = 1; i < HORZ_DIVS; i++)
     {
-        if (0 == i)
-        {
-            // left justify the leftmost text
-            x = (int)( (float) i * pixperdiv);
-            rect.setRect(x ,y, (int)pixperdiv, h / VERT_DIVS);
-            painter.drawText(rect, Qt::AlignLeft|Qt::AlignVCenter, m_HDivText[i]);
-        }
-        else if (HORZ_DIVS == i)
-        {
-            // right justify the rightmost text
-            x = (int)( (float) i * pixperdiv - pixperdiv);
-            rect.setRect(x ,y, (int)pixperdiv, h / VERT_DIVS);
-            painter.drawText(rect, Qt::AlignRight|Qt::AlignVCenter, m_HDivText[i]);
-        }
-        else
-        {
-            // center justify the rest of the text
-            x = (int)( (float) i * pixperdiv - pixperdiv/2);
-            rect.setRect(x ,y, (int)pixperdiv, h / VERT_DIVS);
-            painter.drawText(rect, Qt::AlignHCenter|Qt::AlignVCenter, m_HDivText[i]);
-        }
+        x = (int)( (float) i * pixperdiv - pixperdiv/2);
+        rect.setRect(x ,y, (int)pixperdiv, h / VERT_DIVS);
+        painter.drawText(rect, Qt::AlignHCenter | Qt::AlignVCenter,
+                         m_HDivText[i]);
     }
 
     // draw horizontal grids
