@@ -942,7 +942,7 @@ void CPlotter::DrawOverlay()
     // draw horizontal grids
     pixperdiv = (float)h / (float)VERT_DIVS;
     painter.setPen(QPen(Qt::lightGray, 1, Qt::DotLine));
-    for (int i = 1; i < VERT_DIVS; i++)
+    for (int i = 0; i < VERT_DIVS; i++)
     {
         y = (int)((float)i * pixperdiv);
         painter.drawLine(0, y, w, y);
