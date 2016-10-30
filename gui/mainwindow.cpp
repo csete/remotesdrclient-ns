@@ -137,6 +137,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(ui->actionSoundCard, SIGNAL(triggered()), this, SLOT(OnSoundCardDlg()));
 	connect(ui->actionTransmit, SIGNAL(triggered()), this, SLOT(OnTransmitDlg()));
 	connect(ui->actionStayOnTop, SIGNAL(triggered()), this, SLOT(StayOnTop()));
+    connect(ui->actionNcoNull, SIGNAL(triggered()), this, SLOT(OnNullNco()));
 	connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(OnAbout()));
 	connect(ui->frameThresh, SIGNAL(sliderValChanged(int)), this, SLOT(OnAgcThresh(int)));
 	connect(ui->frameDecay, SIGNAL(sliderValChanged(int)), this, SLOT(OnAgcDecay(int)));
