@@ -68,15 +68,15 @@
 #include "ui_mainwindow.h"
 #include "editnetdlg.h"
 #include "sounddlg.h"
-#include "aboutdlg.h"
 #include "transmitdlg.h"
 #include "interface/sdrprotocol.h"
 #include <QDebug>
 #include <QList>
+#include <QMessageBox>
 #include <QSpinBox>
 #include <QSettings>
 
-#define PROGRAM_TITLE_VERSION "RemoteSdrClient 1.11-ns11"
+#define PROGRAM_TITLE_VERSION "Remote SDR Client 1.11-ns11"
 
 
 #define DOWNCONVERTER_TRANSITION_FREQ 56000000	//frequency where transition between direct and downconverter mode occurs
@@ -551,8 +551,22 @@ void MainWindow::readSettings()
 /////////////////////////////////////////////////////////////////////
 void MainWindow::OnAbout()
 {
-CAboutDlg dlg(this,PROGRAM_TITLE_VERSION);
-	dlg.exec();
+    QMessageBox::about(this, tr("About Remote SDR Client"),
+        tr("<p>%1</p>"
+           "<p>Copyright 2013  Moe Wheatley</p>"
+           "<p>"
+           "Example client application for RFSpace CloudIQ and CloudSDR "
+           "radios. Modified for own use by Alexandru Csete OZ9AEC."
+           "</p>"
+           "<p>"
+           "Original source code and documentation is available on "
+           "<a href='http://sourceforge.net/projects/remotesdrclient/'>SourceForge</a>. "
+           "The source code for this fork is kept on "
+           "<a href='https://github.com/csete/remotesdrclient-ns'>Github</a>"
+           "</p>"
+           "<p>"
+           "Licensed under Simplified BSD License."
+           "</p>").arg(PROGRAM_TITLE_VERSION));
 }
 
 /////////////////////////////////////////////////////////////////////

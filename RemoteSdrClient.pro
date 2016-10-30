@@ -19,7 +19,6 @@ SOURCES += \
     gui/meter.cpp \
     gui/plotter.cpp  \
     gui/rawiqwidget.cpp \
-    gui/aboutdlg.cpp \
     gui/sdrdiscoverdlg.cpp \
     gui/transmitdlg.cpp \
     gui/memdialog.cpp \
@@ -42,7 +41,6 @@ HEADERS  += \
     gui/meter.h \
     gui/plotter.h \
     gui/rawiqwidget.h \
-    gui/aboutdlg.h \
     gui/sdrdiscoverdlg.h \
     gui/transmitdlg.h \
     gui/memdialog.h \
@@ -60,7 +58,6 @@ HEADERS  += \
     interface/soundin.h
 
 FORMS += \
-    nanoforms/aboutdlg.ui \
     nanoforms/mainwindow.ui \
     nanoforms/ipeditframe.ui \
     nanoforms/editnetdlg.ui \
