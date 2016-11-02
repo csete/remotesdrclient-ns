@@ -271,6 +271,9 @@
      <bold>false</bold>
     </font>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::TabFocus</enum>
+   </property>
    <property name="maxLength">
     <number>16</number>
    </property>
@@ -297,6 +300,9 @@
      <italic>false</italic>
      <bold>false</bold>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::TabFocus</enum>
    </property>
    <property name="maxLength">
     <number>16</number>
@@ -344,6 +350,9 @@
      <italic>false</italic>
     </font>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::TabFocus</enum>
+   </property>
    <property name="maxLength">
     <number>256</number>
    </property>
@@ -386,6 +395,9 @@
     <font>
      <italic>false</italic>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::TabFocus</enum>
    </property>
    <property name="maxLength">
     <number>256</number>
@@ -451,6 +463,9 @@
      <weight>50</weight>
      <bold>false</bold>
     </font>
+   </property>
+   <property name="mouseTracking">
+    <bool>true</bool>
    </property>
    <property name="focusPolicy">
     <enum>Qt::TabFocus</enum>
