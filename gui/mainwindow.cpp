@@ -482,8 +482,8 @@ void MainWindow::readSettings()
 	m_TxPassword = settings.value("TxPassword","password").toString();
 	m_DomainName = settings.value("DomainName","").toString();
 	m_ClientDesc = settings.value("ClientDesc","").toString();
-	m_ListServer = settings.value("ListServer","moetronix.com").toString();
-	m_ListServerActionPath = settings.value("ListServerActionPath","/cgi-bin/getentries.py").toString();
+    m_ListServer = settings.value("ListServer","sdranywhere.com").toString();
+    m_ListServerActionPath = settings.value("ListServerActionPath","/cloud/get.py").toString();
 	m_MemoryFilePath =  settings.value("MemoryFilePath","").toString();
 	m_TxCenterFrequency = settings.value("TxCenterFrequency", 10000000).toLongLong();
 	m_TxSpanFreq = settings.value("TxSpanFreq",15000).toInt();
