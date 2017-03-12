@@ -302,7 +302,7 @@
              <x>0</x>
              <y>0</y>
              <width>248</width>
-             <height>698</height>
+             <height>700</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -333,7 +333,7 @@
                <string>Receiver</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
-               <item row="3" column="1">
+               <item row="4" column="1">
                 <widget class="QSlider" name="horizontalSliderSquelch">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -361,7 +361,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="7" column="0" colspan="2">
+               <item row="8" column="0" colspan="2">
                 <widget class="CSliderCtrl" name="frameThresh">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
@@ -386,7 +386,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="8" column="0" colspan="2">
+               <item row="9" column="0" colspan="2">
                 <widget class="CSliderCtrl" name="frameDecay">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
@@ -411,7 +411,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
+               <item row="2" column="1">
                 <widget class="QSpinBox" name="spinBoxOffset">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -442,7 +442,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="3" column="0">
+               <item row="4" column="0">
                 <widget class="QLabel" name="label_1">
                  <property name="toolTip">
                   <string>FM Squelch Control</string>
@@ -465,7 +465,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="4" column="0">
+               <item row="5" column="0">
                 <widget class="QLabel" name="labelSquelch_3">
                  <property name="font">
                   <font>
@@ -484,7 +484,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="5" column="1">
+               <item row="6" column="1">
                 <widget class="QComboBox" name="antennaSelector">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -512,7 +512,7 @@
                  </item>
                 </widget>
                </item>
-               <item row="2" column="0">
+               <item row="3" column="0">
                 <widget class="QLabel" name="label_2">
                  <property name="toolTip">
                   <string>FM Squelch Control</string>
@@ -595,7 +595,7 @@
                  </item>
                 </widget>
                </item>
-               <item row="4" column="1">
+               <item row="5" column="1">
                 <widget class="QSpinBox" name="spinBoxAtten">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -617,7 +617,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="9" column="0">
+               <item row="10" column="0">
                 <widget class="QCheckBox" name="checkBoxMemory">
                  <property name="enabled">
                   <bool>true</bool>
@@ -633,7 +633,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="5" column="0">
+               <item row="6" column="0">
                 <widget class="QLabel" name="label_10">
                  <property name="text">
                   <string>Antenna</string>
@@ -643,7 +643,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="6" column="0">
+               <item row="7" column="0">
                 <widget class="QLabel" name="labelAudioRate">
                  <property name="toolTip">
                   <string>FM Squelch Control</string>
@@ -656,7 +656,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="6" column="1">
+               <item row="7" column="1">
                 <widget class="QComboBox" name="comboBoxAudioCompression">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
@@ -675,7 +675,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="9" column="1">
+               <item row="10" column="1">
                 <widget class="QCheckBox" name="checkBoxAudioHP">
                  <property name="enabled">
                   <bool>true</bool>
@@ -685,7 +685,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="1">
+               <item row="3" column="1">
                 <widget class="QSlider" name="horizontalSliderVol">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -716,6 +716,45 @@
                  </property>
                  <property name="tickInterval">
                   <number>10</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="fdvModeSel">
+                 <item>
+                  <property name="text">
+                   <string>Off</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>700B</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>700C</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>800XA</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>1600</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_12">
+                 <property name="text">
+                  <string>FreeDV</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
                 </widget>
                </item>
@@ -1079,7 +1118,7 @@
      <x>0</x>
      <y>0</y>
      <width>919</width>
-     <height>20</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

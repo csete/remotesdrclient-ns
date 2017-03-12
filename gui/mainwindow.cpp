@@ -126,6 +126,9 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(m_pSdrInterface, SIGNAL(NewVideoData()), this, SLOT(OnNewVideoData()));
 	connect(m_pSdrInterface, SIGNAL(NewFftAvePwr(qint16)), this, SLOT(OnNewFftAvePwr(qint16)));
 
+#ifndef ENABLE_CODEC2
+    ui->fdvModeSel->setEnabled(false);
+#endif
 
 	//create status timer and connect its signal
 	m_pTimer = new QTimer(this);
