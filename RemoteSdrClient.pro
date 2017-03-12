@@ -16,6 +16,8 @@ packagesExist(codec2) {
     message("Codec2 support enabled.")
     PKGCONFIG += codec2
     DEFINES += ENABLE_CODEC2
+    SOURCES += interface/freedv.cpp
+    HEADERS += interface/freedv.h
 } else {
     message("Codec2 support disabled.")
 }

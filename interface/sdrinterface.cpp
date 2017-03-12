@@ -107,7 +107,7 @@ CSdrInterface::CSdrInterface(QObject *parent) : m_pParent(parent)
 	connect(m_pSoundIn,SIGNAL( NewSoundDataRdy() ), this, SLOT( OnNewSoundDataRdySlot() ) );
 
 #ifdef ENABLE_CODEC2
-    fdv = 0;
+    fdv = new CFreedv(this);
 #endif
 
 qDebug()<<"CSdrInterface constructor";
@@ -117,7 +117,7 @@ CSdrInterface::~CSdrInterface()
 {
 #ifdef ENABLE_CODEC2
     if (fdv)
-        freedv_close(fdv);
+        delete fdv;
 #endif
     if(m_pSoundOut)
 		delete m_pSoundOut;
@@ -518,35 +518,6 @@ void CSdrInterface::SetAntenna(int antenna)
     TxAscpMsg.AddParm8(0);
     TxAscpMsg.AddParm8((quint8)antenna);
     SendAscpMsg(&TxAscpMsg);
-}
-
-void CSdrInterface::SetFreedvMode(const QString &mode_str)
-{
-#ifndef ENABLE_CODEC2
-    (void) mode_str;
-    return;
-#else
-    int fdv_mode;
-    if (fdv)
-    {
-        freedv_close(fdv);
-        fdv = 0;
-    }
-
-    if (mode_str.contains("1600"))
-        fdv_mode = FREEDV_MODE_1600;
-    else if (mode_str.contains("700B"))
-        fdv_mode = FREEDV_MODE_700B;
-    else if (mode_str.contains("700C"))
-        fdv_mode = FREEDV_MODE_700C;
-    else if (mode_str.contains("800XA"))
-        fdv_mode = FREEDV_MODE_800XA;
-    else
-        return;
-
-    fdv = freedv_open(fdv_mode);
-    qDebug() << "FreeDV mode:" << mode_str;
-#endif
 }
 
 ////////////////////////////////////////////////////////////////////////

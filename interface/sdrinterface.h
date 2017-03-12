@@ -7,10 +7,6 @@
 #ifndef SDRINTERFACE_H
 #define SDRINTERFACE_H
 
-#ifdef ENABLE_CODEC2
-#include <codec2/freedv_api.h>
-#endif
-
 #include <QObject>
 #include <QString>
 #include <QElapsedTimer>
@@ -20,6 +16,10 @@
 #include "dsp/G711.h"
 #include "dsp/G726.h"
 #include "dsp/fir.h"
+
+#ifdef ENABLE_CODEC2
+#include "freedv.h"
+#endif
 
 #define MAX_DATAPKT_LENGTH 3000
 #define MAX_VIDEO_LENGTH 3000
@@ -138,7 +138,12 @@ signals:
 	void NewVideoData();
 
 public slots:
-    void SetFreedvMode(const QString &mode_str);
+    void SetFreedvMode(const QString &mode_str)
+    {
+#ifdef ENABLE_CODEC2
+        fdv->set_mode(mode_str);
+#endif
+    }
 
 private slots:
 	void OnNewSoundDataRdySlot();
@@ -180,7 +185,8 @@ private:
 
 #ifdef ENABLE_CODEC2
     // FreeDV stuff
-    struct freedv   *fdv;
+    CFreedv   *fdv;
+    qint16 m_SoundDvBuf[MAX_DATAPKT_LENGTH];
 #endif
 };
 
