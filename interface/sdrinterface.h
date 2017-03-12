@@ -7,6 +7,10 @@
 #ifndef SDRINTERFACE_H
 #define SDRINTERFACE_H
 
+#ifdef ENABLE_CODEC2
+#include <codec2/freedv_api.h>
+#endif
+
 #include <QObject>
 #include <QString>
 #include <QElapsedTimer>
@@ -134,6 +138,8 @@ signals:
 	void NewVideoData();
 
 public slots:
+    void SetFreedvMode(const QString &mode_str);
+
 private slots:
 	void OnNewSoundDataRdySlot();
 	
@@ -171,6 +177,11 @@ private:
 	QObject* m_pParent;
 	QElapsedTimer m_LatencyTimer;
 	QMutex m_Mutex;		//for keeping threads from stomping on each other
+
+#ifdef ENABLE_CODEC2
+    // FreeDV stuff
+    struct freedv   *fdv;
+#endif
 };
 
 #endif // SDRINTERFACE_H

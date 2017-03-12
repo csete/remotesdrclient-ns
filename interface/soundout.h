@@ -117,6 +117,5 @@ private:
 	int m_FirState3;
 	float m_pQue2[INTP2_QUE_SIZE];
 	float m_pQue3[INTP3_QUE_SIZE];
-
 };
 #endif // SOUNDOUT_H

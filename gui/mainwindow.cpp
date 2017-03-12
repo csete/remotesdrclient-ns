@@ -128,6 +128,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
 #ifndef ENABLE_CODEC2
     ui->fdvModeSel->setEnabled(false);
+#else
+    connect(ui->fdvModeSel, SIGNAL(activated(const QString &)),
+            m_pSdrInterface, SLOT(SetFreedvMode(const QString &)));
 #endif
 
 	//create status timer and connect its signal
