@@ -34,8 +34,8 @@ private:
     QVarLengthArray<short, FREEDV_NSAMPLES> output_buffer;
     QVarLengthArray<short, FREEDV_NSAMPLES> input_buffer;
     struct freedv  *fdv;
+    int             num_speech_samples; // mode dependent
     int             nin, nout, frames;
-
     int             prev_frames, prev_errors;
 };
 
