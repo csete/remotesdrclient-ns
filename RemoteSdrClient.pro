@@ -8,6 +8,18 @@ TEMPLATE = app
 
 RESOURCES += icons.qrc
 
+# enable pkg-config to find dependencies
+CONFIG += link_pkgconfig
+
+# check if codec2 is available
+packagesExist(codec2) {
+    message("Codec2 support enabled.")
+    PKGCONFIG += codec2
+    DEFINES += ENABLE_CODEC2
+} else {
+    message("Codec2 support disabled.")
+}
+
 SOURCES += \
     gui/mainwindow.cpp \
     gui/main.cpp \
