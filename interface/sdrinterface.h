@@ -142,6 +142,8 @@ public slots:
     {
 #ifdef ENABLE_CODEC2
         fdv->set_mode(mode_str);
+#else
+        (void) mode_str;
 #endif
     }
 
