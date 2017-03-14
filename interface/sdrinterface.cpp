@@ -968,15 +968,27 @@ int n = 0;
 	{
 		if(m_TxActive)
 		{
-			for(int i=0; i<n; i++)
+            for (int i = 0; i < n; i++)
 				m_SoundOutBuf[i] = 0;
+
+            m_pSoundOut->PutOutQueue(n, m_SoundOutBuf);
 		}
 		else
-		{	//process post audio filter to get rid of noise created by
-			//audio de-compression on narrow BW reeciver settings
+        {
+            // process post audio filter to get rid of noise created by
+            // audio de-compression on narrow BW reeciver settings
 			m_Fir.ProcessFilter(n, m_SoundOutBuf, m_SoundOutBuf);
+            if (fdv->is_active())
+            {
+                int m = fdv->process(n, m_SoundOutBuf, m_SoundDvBuf);
+                m_pSoundOut->PutOutQueue(m, m_SoundDvBuf);
+            }
+            else
+            {
+                m_pSoundOut->PutOutQueue(n, m_SoundOutBuf);
+            }
 		}
-		m_pSoundOut->PutOutQueue(n, m_SoundOutBuf);
+
 	}
 }
 
