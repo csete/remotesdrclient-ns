@@ -978,12 +978,15 @@ int n = 0;
             // process post audio filter to get rid of noise created by
             // audio de-compression on narrow BW reeciver settings
 			m_Fir.ProcessFilter(n, m_SoundOutBuf, m_SoundOutBuf);
+
+#ifdef ENABLE_CODEC2
             if (fdv->is_active())
             {
                 int m = fdv->process(n, m_SoundOutBuf, m_SoundDvBuf);
                 m_pSoundOut->PutOutQueue(m, m_SoundDvBuf);
             }
             else
+#endif
             {
                 m_pSoundOut->PutOutQueue(n, m_SoundOutBuf);
             }
