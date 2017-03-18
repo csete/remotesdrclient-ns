@@ -31,6 +31,7 @@ void CFreedv::set_mode(const QString &mode_str)
         fdv = 0;
     }
 
+    // NB: 2400A and 2400B are I/Q modes so we can't use them here
     if (mode_str.contains("1600"))
         fdv_mode = FREEDV_MODE_1600;
     else if (mode_str.contains("700B"))
