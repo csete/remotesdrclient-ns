@@ -9,6 +9,8 @@ CFreedv::CFreedv(QObject *parent) : QObject(parent)
 
     num_speech_samples = 0;
     num_max_modem_samples = 0;
+    sync = 0;
+    snr = 0.f;
 }
 
 CFreedv::~CFreedv()
@@ -81,6 +83,8 @@ int CFreedv::process(int num, short *demod_in, short *audio_out)
 
     memcpy(audio_out, output_buffer.data(), output_buffer.count() * sizeof(short));
     output_buffer.clear();
+
+    freedv_get_modem_stats(fdv, &sync, &snr);
 
     return nout;
 }

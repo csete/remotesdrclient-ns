@@ -15,13 +15,13 @@ public:
 
     void    set_mode(const QString &mode_str);
     int     process(int num, short *demod_in, short *audio_out);
-    int     demod_locked() const
+    int     get_sync() const
     {
-        return 0;//fdv->fdmdv_stats.sync;
+        return sync;
     }
-    float   demod_snr() const
+    float   get_snr() const
     {
-        return 0;//fdv->fdmdv_stats.snr_est;
+        return snr;
     }
     float   demod_ber();
 
@@ -40,6 +40,10 @@ private:
     struct freedv  *fdv;
     int             num_speech_samples; // mode dependent
     int             num_max_modem_samples;
+
+    // statistics
+    int             sync;
+    float           snr;
 };
 
 #endif
