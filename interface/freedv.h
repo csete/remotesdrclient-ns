@@ -40,8 +40,6 @@ private:
     struct freedv  *fdv;
     int             num_speech_samples; // mode dependent
     int             num_max_modem_samples;
-    int             frames;
-    int             prev_frames, prev_errors;
 };
 
 #endif

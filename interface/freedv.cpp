@@ -9,9 +9,6 @@ CFreedv::CFreedv(QObject *parent) : QObject(parent)
 
     num_speech_samples = 0;
     num_max_modem_samples = 0;
-    frames = 0;
-    prev_frames = 0;
-    prev_errors = 0;
 }
 
 CFreedv::~CFreedv()
@@ -74,7 +71,6 @@ int CFreedv::process(int num, short *demod_in, short *audio_out)
         // process nin samples
         nout_tmp = freedv_rx(fdv, speech_out, input_buffer.data());
         nout += nout_tmp;
-        frames++;
         output_buffer.append(speech_out, nout_tmp);
 
         // remove processed data from local buffer
