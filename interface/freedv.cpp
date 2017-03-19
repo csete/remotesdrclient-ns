@@ -8,8 +8,7 @@ CFreedv::CFreedv(QObject *parent) : QObject(parent)
     // TODO: text callback
 
     num_speech_samples = 0;
-    nin = 0;
-    nout = 0;
+    num_max_modem_samples = 0;
     frames = 0;
     prev_frames = 0;
     prev_errors = 0;
@@ -50,34 +49,34 @@ void CFreedv::set_mode(const QString &mode_str)
     qDebug() << "FreeDV mode:" << mode_str;
 
     // update buffer sizes
-    nin = freedv_nin(fdv);
+    num_max_modem_samples = freedv_get_n_max_modem_samples(fdv);
     num_speech_samples = freedv_get_n_speech_samples(fdv);
-    output_buffer.resize(4 * num_speech_samples);
-    input_buffer.resize(4 * freedv_get_n_max_modem_samples(fdv));
+    //output_buffer.resize(4 * num_speech_samples);
+    //input_buffer.resize(4 * num_max_modem_samples);
+    qDebug() << "  num_max_modem_samples:" << num_max_modem_samples;
+    qDebug() << "  num_speech_samples:" << num_speech_samples;
 }
 
 int CFreedv::process(int num, short *demod_in, short *audio_out)
 {
-    int nout_tmp;
-    //short speech_out[FREEDV_NSAMPLES];
-    QVarLengthArray<short, FREEDV_NSAMPLES> speech_out(num_speech_samples);
+    int     nin, nout, nout_tmp;
+    short   speech_out[1024];
 
     // store incoming samples in local buffer
     input_buffer.append(demod_in, num);
 
-    if (input_buffer.length() < nin)
+    nin = freedv_nin(fdv);
+    if (input_buffer.count() < nin)
         return 0;
 
     nout = 0;
-
-    while (input_buffer.length() >= nin)
+    while (input_buffer.count() >= nin)
     {
         // process nin samples
-        //nout_tmp = freedv_rx(fdv, speech_out, input_buffer.data());
-        nout_tmp = freedv_rx(fdv, speech_out.data(), input_buffer.data());
+        nout_tmp = freedv_rx(fdv, speech_out, input_buffer.data());
         nout += nout_tmp;
         frames++;
-        output_buffer.append(speech_out.data(), nout_tmp);
+        output_buffer.append(speech_out, nout_tmp);
 
         // remove processed data from local buffer
         input_buffer.erase(input_buffer.begin(), input_buffer.begin() + nin);
@@ -85,11 +84,10 @@ int CFreedv::process(int num, short *demod_in, short *audio_out)
         nin = freedv_nin(fdv);
     }
 
-    // copy contents of out buffer to return var and clear buffer
-    memcpy(audio_out, output_buffer.data(), output_buffer.length() * sizeof(short));
+    memcpy(audio_out, output_buffer.data(), output_buffer.count() * sizeof(short));
     output_buffer.clear();
 
-    return nout; // output samples provided in audio_out
+    return nout;
 }
 
 

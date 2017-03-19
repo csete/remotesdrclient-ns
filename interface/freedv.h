@@ -35,13 +35,13 @@ signals:
 public slots:
 
 private:
-#define FREEDV_NSAMPLES 512     // from earlier API; bufsizes will be updated in set_mode()
-    QVarLengthArray<short, FREEDV_NSAMPLES> output_buffer;
-    QVarLengthArray<short, FREEDV_NSAMPLES> input_buffer;
+    QVarLengthArray<short>  output_buffer;
+    QVarLengthArray<short>  input_buffer;
     struct freedv  *fdv;
     int             num_speech_samples; // mode dependent
-    int             nin, nout, frames;
+    int             num_max_modem_samples;
+    int             frames;
     int             prev_frames, prev_errors;
 };
 
-#endif // CFREEDV_H
+#endif
