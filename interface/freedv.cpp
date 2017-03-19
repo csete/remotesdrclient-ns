@@ -48,13 +48,12 @@ void CFreedv::set_mode(const QString &mode_str)
 
     qDebug() << "FreeDV mode:" << mode_str;
 
-    // update buffer sizes
     num_max_modem_samples = freedv_get_n_max_modem_samples(fdv);
     num_speech_samples = freedv_get_n_speech_samples(fdv);
-    //output_buffer.resize(4 * num_speech_samples);
-    //input_buffer.resize(4 * num_max_modem_samples);
     qDebug() << "  num_max_modem_samples:" << num_max_modem_samples;
     qDebug() << "  num_speech_samples:" << num_speech_samples;
+    output_buffer.clear();
+    input_buffer.clear();
 }
 
 int CFreedv::process(int num, short *demod_in, short *audio_out)
