@@ -23,8 +23,6 @@ public:
     {
         return snr;
     }
-    float   demod_ber();
-
     bool    is_active(void) const
     {
         return fdv != 0;

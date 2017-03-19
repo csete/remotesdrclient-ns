@@ -88,16 +88,3 @@ int CFreedv::process(int num, short *demod_in, short *audio_out)
 
     return nout;
 }
-
-
-float   CFreedv::demod_ber()
-{
-    return 0.f;
-/*    float bits = codec2_bits_per_frame((CODEC2 *)fdv->codec2) * (frames - prev_frames);
-    float errors = fdv->total_bit_errors - prev_errors;
-
-    prev_frames = frames;
-    prev_errors = fdv->total_bit_errors;
-
-    return errors / bits;*/
-}
