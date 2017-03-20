@@ -15,13 +15,10 @@ public:
 
     void    set_mode(const QString &mode_str);
     int     process(int num, short *demod_in, short *audio_out);
-    int     get_sync() const
+    void    get_snr(int * _sync, float * _snr) const
     {
-        return sync;
-    }
-    float   get_snr() const
-    {
-        return snr;
+        *_sync = sync;
+        *_snr = snr;
     }
     bool    is_active(void) const
     {
