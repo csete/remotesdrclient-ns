@@ -621,6 +621,25 @@ int count;
 			break;
 	}
 	statusBar()->showMessage(m_Str,0);
+
+#ifdef ENABLE_CODEC2
+    QString     snr_str;
+    if (m_pSdrInterface->m_SdrStatus == SDR_RECEIVING)
+    {
+        int     sync;
+        float   snr;
+        m_pSdrInterface->GetFreedvSnr(&sync, &snr);
+        if (sync)
+            snr_str = QString("%1 dB").arg(snr, 0, 'f', 1);
+        else
+            snr_str = "no sync";
+    }
+    else
+    {
+        snr_str = "---";
+    }
+    ui->fdvSnrLabel->setText(snr_str);
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////
