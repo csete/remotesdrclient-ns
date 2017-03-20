@@ -131,7 +131,25 @@ public:
 	QString m_SdrName;
 	QString m_ServerName;
 	QString m_SerialNumStr;
-	
+
+    void GetFreedvSnr(int * sync, float * snr) const
+    {
+#ifdef ENABLE_CODEC2
+        if (fdv->is_active())
+        {
+            fdv->get_snr(sync, snr);
+        }
+        else
+        {
+            *sync = 0;
+            *snr = 0.f;
+        }
+#else
+        *sync = 0;
+        *snr = 0.f;
+#endif
+    }
+
 signals:
 	void NewSMeterValue(qint16 Val);
 	void NewFftAvePwr(qint16 Val);
