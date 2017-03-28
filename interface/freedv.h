@@ -1,7 +1,7 @@
 #ifndef CFREEDV_H
 #define CFREEDV_H
 
-#include <codec2/freedv_api.h>
+#include <freedv_api.h>
 #include <QObject>
 #include <QString>
 #include <QVarLengthArray>
