@@ -76,7 +76,7 @@
 #include <QSpinBox>
 #include <QSettings>
 
-#define PROGRAM_TITLE_VERSION "Remote SDR Client 1.11-ns14"
+#define PROGRAM_TITLE_VERSION "Remote SDR Client 1.11-ns14+"
 
 
 #define DOWNCONVERTER_TRANSITION_FREQ 56000000	//frequency where transition between direct and downconverter mode occurs
