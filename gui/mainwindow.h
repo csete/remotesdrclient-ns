@@ -11,6 +11,7 @@
 #include <QHostAddress>
 #include <QTimer>
 #include <QCheckBox>
+#include <QShortcut>
 #include "interface/sdrinterface.h"
 #include "interface/sdrprotocol.h"
 #include "gui/memdialog.h"
@@ -77,7 +78,7 @@ private slots:
 	void OnNewCenterFrequency(qint64 freq);	//called when center frequency has changed
 	void OnNewPlotCenterFrequency(qint64 freq);
 	void OnStart();
-    void OnFullScreen(bool checked);
+    void OnFullScreen();
 	void OnNullNco();
 	void OnAutoScale();
 	void OnAudioFilterChanged(int state);
@@ -169,6 +170,7 @@ private:
 	CMemDialog* m_pMemDialog;
 	QTimer *m_pTimer;
 
+    QShortcut           *fs_shortcut;
     Qt::WindowStates     mw_state;   // window state to restore when exiting full screen
 };
 

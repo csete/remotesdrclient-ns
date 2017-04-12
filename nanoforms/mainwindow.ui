@@ -1244,17 +1244,11 @@
    </property>
   </action>
   <action name="actionFullScreen">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
    <property name="text">
-    <string>Full screen</string>
+    <string>View full screen (F11)</string>
    </property>
    <property name="toolTip">
     <string>Toggle full screen view</string>
-   </property>
-   <property name="shortcut">
-    <string>F11</string>
    </property>
   </action>
  </widget>

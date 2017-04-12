@@ -143,7 +143,6 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(ui->actionSoundCard, SIGNAL(triggered()), this, SLOT(OnSoundCardDlg()));
 	connect(ui->actionTransmit, SIGNAL(triggered()), this, SLOT(OnTransmitDlg()));
 	connect(ui->actionStayOnTop, SIGNAL(triggered()), this, SLOT(StayOnTop()));
-    connect(ui->actionFullScreen, SIGNAL(triggered(bool)), this, SLOT(OnFullScreen(bool)));
     connect(ui->actionNcoNull, SIGNAL(triggered()), this, SLOT(OnNullNco()));
 	connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(OnAbout()));
 	connect(ui->frameThresh, SIGNAL(sliderValChanged(int)), this, SLOT(OnAgcThresh(int)));
@@ -293,11 +292,20 @@ MainWindow::MainWindow(QWidget *parent) :
 		SetRawIQWidgetState(true);
 
 	m_InhibitUpdate = false;
-    mw_state = Qt::WindowNoState;
+
+    {
+        fs_shortcut = new QShortcut(QKeySequence(Qt::Key_F11), this);
+        fs_shortcut->setContext(Qt::ApplicationShortcut);
+        connect(fs_shortcut, SIGNAL(activated()), this, SLOT(OnFullScreen()));
+        connect(ui->actionFullScreen, SIGNAL(triggered()), this, SLOT(OnFullScreen()));
+        mw_state = Qt::WindowNoState;
+    }
 }
 
 MainWindow::~MainWindow()
 {
+    delete fs_shortcut;
+
 	if(m_pSdrInterface)
 		delete m_pSdrInterface;
 	if(m_pMemDialog)
@@ -1530,16 +1538,20 @@ qDebug()<<val <<"MaxdB"<<m_dBMax << m_dBStepSize;
 					  m_dBMax - (m_dBStepSize*VERT_DIVS), m_FftAve , m_FftRate);
 }
 
-void MainWindow::OnFullScreen(bool checked)
+void MainWindow::OnFullScreen()
 {
-    if (checked)
+    if (isFullScreen())
     {
-        mw_state = windowState();
-        showFullScreen();
+        setWindowState(mw_state);
+        ui->menuBar->setVisible(true);
+        ui->statusBar->setVisible(true);
     }
     else
     {
-        setWindowState(mw_state);
+        mw_state = windowState();
+        ui->menuBar->setVisible(false);
+        ui->statusBar->setVisible(false);
+        showFullScreen();
     }
 }
 
