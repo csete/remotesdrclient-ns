@@ -1166,6 +1166,7 @@
     <property name="title">
      <string>Tools</string>
     </property>
+    <addaction name="actionFullScreen"/>
     <addaction name="actionNcoNull"/>
    </widget>
    <addaction name="menuFile"/>
@@ -1240,6 +1241,20 @@
   <action name="actionNcoNull">
    <property name="text">
     <string>NCO Null</string>
+   </property>
+  </action>
+  <action name="actionFullScreen">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Full screen</string>
+   </property>
+   <property name="toolTip">
+    <string>Toggle full screen view</string>
+   </property>
+   <property name="shortcut">
+    <string>F11</string>
    </property>
   </action>
  </widget>

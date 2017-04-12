@@ -143,6 +143,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(ui->actionSoundCard, SIGNAL(triggered()), this, SLOT(OnSoundCardDlg()));
 	connect(ui->actionTransmit, SIGNAL(triggered()), this, SLOT(OnTransmitDlg()));
 	connect(ui->actionStayOnTop, SIGNAL(triggered()), this, SLOT(StayOnTop()));
+    connect(ui->actionFullScreen, SIGNAL(triggered(bool)), this, SLOT(OnFullScreen(bool)));
     connect(ui->actionNcoNull, SIGNAL(triggered()), this, SLOT(OnNullNco()));
 	connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(OnAbout()));
 	connect(ui->frameThresh, SIGNAL(sliderValChanged(int)), this, SLOT(OnAgcThresh(int)));
@@ -292,6 +293,7 @@ MainWindow::MainWindow(QWidget *parent) :
 		SetRawIQWidgetState(true);
 
 	m_InhibitUpdate = false;
+    mw_state = Qt::WindowNoState;
 }
 
 MainWindow::~MainWindow()
@@ -1526,6 +1528,19 @@ qDebug()<<val <<"MaxdB"<<m_dBMax << m_dBStepSize;
 	ui->framePlot->UpdateOverlay();
 	m_pSdrInterface->SetupFft(m_PlotWidth, m_SpanFreq, m_dBMax,
 					  m_dBMax - (m_dBStepSize*VERT_DIVS), m_FftAve , m_FftRate);
+}
+
+void MainWindow::OnFullScreen(bool checked)
+{
+    if (checked)
+    {
+        mw_state = windowState();
+        showFullScreen();
+    }
+    else
+    {
+        setWindowState(mw_state);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////
