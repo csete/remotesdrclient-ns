@@ -147,41 +147,7 @@ void CFreqCtrl::Setup(int NumDigits, qint64 Minf, qint64 Maxf, int MinStep,
         m_MinFreq = 1;
     m_MinFreq = m_MinFreq - m_MinFreq % m_MinStep;
     m_DigStart = 0;
-    switch (UnitsType)
-    {
-    case UNITS_HZ:
-        m_DecPos = 0;
-        m_UnitString = "Hz ";
-        break;
-    case UNITS_KHZ:
-        m_DecPos = 3;
-        m_UnitString = "KHz";
-        break;
-    case UNITS_MHZ:
-        m_DecPos = 6;
-        m_UnitString = "MHz";
-        break;
-    case UNITS_GHZ:
-        m_DecPos = 9;
-        m_UnitString = "GHz";
-        break;
-    case UNITS_SEC:
-        m_DecPos = 6;
-        m_UnitString = "Sec";
-        break;
-    case UNITS_MSEC:
-        m_DecPos = 3;
-        m_UnitString = "mS ";
-        break;
-    case UNITS_USEC:
-        m_DecPos = 0;
-        m_UnitString = "uS ";
-        break;
-    case UNITS_NSEC:
-        m_DecPos = 0;
-        m_UnitString = "nS ";
-        break;
-    }
+    SetUnits(UnitsType);
     for (i = m_NumDigits - 1; i >= 0; i--)
     {
         if (m_DigitInfo[i].weight <= m_MinStep)
