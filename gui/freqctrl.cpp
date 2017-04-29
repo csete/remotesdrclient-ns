@@ -64,8 +64,9 @@ CFreqCtrl::CFreqCtrl(QWidget *parent) :
     setMouseTracking(true);
     m_BkColor = Qt::black;
     m_DigitColor = Qt::white;
-    m_HighlightColor = Qt::gray;
     m_UnitsColor = Qt::gray;
+    m_HighlightColor = Qt::gray;
+    m_Units = UNITS_NONE;
     m_freq = 15000000;
     Setup(8, 1, 150000000U, 1, UNITS_MHZ);
     m_Oldfreq = 0;
@@ -226,6 +227,10 @@ void CFreqCtrl::SetUnits(FUNITS units)
 {
     switch (units)
     {
+    case UNITS_NONE:
+        m_DecPos = 0;
+        m_UnitString = QString();
+        break;
     case UNITS_HZ:
         m_DecPos = 0;
         m_UnitString = "Hz ";
@@ -259,6 +264,7 @@ void CFreqCtrl::SetUnits(FUNITS units)
         m_UnitString = "nS ";
         break;
     }
+    m_Units = units;
     m_UpdateAll = true;
     UpdateCtrl(true);
 }
@@ -549,24 +555,28 @@ void CFreqCtrl::DrawBkGround(QPainter &Painter)
     int    sepwidth = (SEPRATIO_N * cellwidth) / (100 * SEPRATIO_D);
 // qDebug() <<cellwidth <<sepwidth;
 
-    m_UnitsRect.setRect(rect.right() - 2 * cellwidth,
-                        rect.top(),
-                        2 * cellwidth,
-                        rect.height());
-// draw units text
-    m_UnitsFont.setPixelSize((UNITS_SIZE_PERCENT * rect.height()) / 100);
-    m_UnitsFont.setFamily("Arial");
-    Painter.setFont(m_UnitsFont);
-    Painter.setPen(m_UnitsColor);
-    Painter.drawText(m_UnitsRect, Qt::AlignHCenter | Qt::AlignVCenter,
-                     m_UnitString);
+    // draw units text
+    if (m_Units != UNITS_NONE)
+    {
+        m_UnitsRect.setRect(rect.right() - 2 * cellwidth,
+                            rect.top(),
+                            2 * cellwidth,
+                            rect.height());
+        m_UnitsFont.setPixelSize((UNITS_SIZE_PERCENT * rect.height()) / 100);
+        m_UnitsFont.setFamily("Arial");
+        Painter.setFont(m_UnitsFont);
+        Painter.setPen(m_UnitsColor);
+        Painter.drawText(m_UnitsRect, Qt::AlignHCenter | Qt::AlignVCenter,
+                        m_UnitString);
+    }
 
-
+    // draw digits
     m_DigitFont.setPixelSize((DIGIT_SIZE_PERCENT * rect.height()) / 100);
     m_DigitFont.setFamily("Arial");
     Painter.setFont(m_DigitFont);
     Painter.setPen(m_DigitColor);
 
+    char   thsep = ' ';     // thousand separator
     int    digpos = rect.right() - 2 * cellwidth - 1; // starting digit x position
     for (int i = m_DigStart; i < m_NumDigits; i++)
     {
@@ -578,18 +588,30 @@ void CFreqCtrl::DrawBkGround(QPainter &Painter)
                                    rect.bottom());
             digpos -= sepwidth;
             Painter.fillRect(m_SepRect[i], m_BkColor);
-            if (i == m_DecPos)
-                Painter.drawText(m_SepRect[i],
-                                 Qt::AlignHCenter | Qt::AlignVCenter, ".");
-            else if (i > m_DecPos)
+            if (m_Units == UNITS_NONE)
             {
                 if (m_LeadZeroPos > i)
-                    Painter.drawText(m_SepRect[i],
-                                     Qt::AlignHCenter | Qt::AlignVCenter, ",");
+                    thsep = '.';
                 else
-                    Painter.drawText(m_SepRect[i],
-                                     Qt::AlignHCenter | Qt::AlignVCenter, " ");
+                    thsep = ' ';
             }
+            else
+            {
+                if (i == m_DecPos)
+                {
+                    thsep = '.';
+                }
+                else if (i > m_DecPos)
+                {
+                    if (m_LeadZeroPos > i)
+                        thsep = ',';
+                    else
+                        thsep = ' ' ;
+                }
+            }
+            Painter.drawText(m_SepRect[i], Qt::AlignHCenter | Qt::AlignVCenter,
+                             QChar(thsep));
+
         }
         else
         {

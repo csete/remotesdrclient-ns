@@ -21,7 +21,17 @@
 #include <QFrame>
 #include <QImage>
 
-enum FUNITS {UNITS_HZ, UNITS_KHZ, UNITS_MHZ, UNITS_GHZ, UNITS_SEC, UNITS_MSEC, UNITS_USEC, UNITS_NSEC };
+enum FUNITS {
+    UNITS_NONE,     // Hz without unit display and dot for thousand separator
+    UNITS_HZ,
+    UNITS_KHZ,
+    UNITS_MHZ,
+    UNITS_GHZ,
+    UNITS_SEC,
+    UNITS_MSEC,
+    UNITS_USEC,
+    UNITS_NSEC
+};
 
 #define MAX_DIGITS 12
 #define MIN_DIGITS 4
