@@ -81,6 +81,8 @@
 
 #define DOWNCONVERTER_TRANSITION_FREQ 56000000	//frequency where transition between direct and downconverter mode occurs
 
+#define DEFAULT_UNITS   UNITS_NONE
+
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
@@ -158,7 +160,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(ui->framePlot, SIGNAL(NewHighCutFreq(int)),  this, SLOT(OnNewHighCutFreq(int)));
 
 	//setup frequency control
-	ui->frameFreqCtrl->Setup(10, 0U, 3000000000UL, 1, UNITS_MHZ );
+    ui->frameFreqCtrl->Setup(10, 0U, 3000000000UL, 1, DEFAULT_UNITS);
     ui->frameFreqCtrl->SetBkColor(Qt::white);
     ui->frameFreqCtrl->SetDigitColor(QColor(0xFF1F1D1D));
     ui->frameFreqCtrl->SetUnitsColor(QColor(0xFF1F1D1D));
@@ -720,7 +722,7 @@ qDebug()<<"Sdr Receiving";
 			m_pSdrInterface->SetTxFrequency(m_TxCenterFrequency);
 			//setup spectrum display plot
 //qDebug()<<m_pSdrInterface->m_pRxFrequencyRangeMin[0] << m_pSdrInterface->m_pRxFrequencyRangeMax[0];
-			ui->frameFreqCtrl->Setup(10, m_pSdrInterface->m_pRxFrequencyRangeMin[0], m_pSdrInterface->m_pRxFrequencyRangeMax[0], 1, UNITS_MHZ );
+            ui->frameFreqCtrl->Setup(10, m_pSdrInterface->m_pRxFrequencyRangeMin[0], m_pSdrInterface->m_pRxFrequencyRangeMax[0], 1, DEFAULT_UNITS);
 			ui->frameFreqCtrl->SetFrequency(m_RxCenterFrequency);
 
 			ui->spinBoxSpan->setRange(m_pSdrInterface->m_RxSpanMin,m_pSdrInterface->m_RxSpanMax);
@@ -900,7 +902,7 @@ void MainWindow::OnButtonPtt(bool state)
 		m_pSdrInterface->SetPTT(CI_TX_STATE_ON );
         //ui->frameFreqCtrl->SetDigitColor(Qt::red);
         //ui->frameFreqCtrl->SetUnitsColor(Qt::darkRed);
-		ui->frameFreqCtrl->Setup(10, m_pSdrInterface->m_pTxFrequencyRangeMin[0], m_pSdrInterface->m_pTxFrequencyRangeMax[0], 1, UNITS_MHZ );
+        ui->frameFreqCtrl->Setup(10, m_pSdrInterface->m_pTxFrequencyRangeMin[0], m_pSdrInterface->m_pTxFrequencyRangeMax[0], 1, DEFAULT_UNITS);
 		ui->framePlot->SetCenterFreq( m_TxCenterFrequency );
 		ui->frameFreqCtrl->SetFrequency(m_TxCenterFrequency);
 		m_pSdrInterface->SetTxFrequency(m_TxCenterFrequency);
@@ -912,7 +914,7 @@ void MainWindow::OnButtonPtt(bool state)
         //ui->frameFreqCtrl->SetDigitColor(Qt::white);
         //ui->frameFreqCtrl->SetUnitsColor(Qt::white);
 		ui->framePlot->SetCenterFreq( m_RxCenterFrequency );
-		ui->frameFreqCtrl->Setup(10, m_pSdrInterface->m_pRxFrequencyRangeMin[0], m_pSdrInterface->m_pRxFrequencyRangeMax[0], 1, UNITS_MHZ );
+        ui->frameFreqCtrl->Setup(10, m_pSdrInterface->m_pRxFrequencyRangeMin[0], m_pSdrInterface->m_pRxFrequencyRangeMax[0], 1, DEFAULT_UNITS);
 		ui->frameFreqCtrl->SetFrequency(m_RxCenterFrequency);
 		m_pSdrInterface->SetTxFrequency(m_RxCenterFrequency);
 	}
@@ -931,7 +933,7 @@ void MainWindow::OnDigitalPtt(bool state)
 		m_pSdrInterface->SetPTT(CI_TX_STATE_ON );
         //ui->frameFreqCtrl->SetDigitColor(Qt::red);
         //ui->frameFreqCtrl->SetUnitsColor(Qt::darkRed);
-		ui->frameFreqCtrl->Setup(10, m_pSdrInterface->m_pTxFrequencyRangeMin[0], m_pSdrInterface->m_pTxFrequencyRangeMax[0], 1, UNITS_MHZ );
+        ui->frameFreqCtrl->Setup(10, m_pSdrInterface->m_pTxFrequencyRangeMin[0], m_pSdrInterface->m_pTxFrequencyRangeMax[0], 1, DEFAULT_UNITS);
 		ui->framePlot->SetCenterFreq( m_TxCenterFrequency );
 		ui->frameFreqCtrl->SetFrequency(m_TxCenterFrequency);
 		m_pSdrInterface->SetTxFrequency(m_TxCenterFrequency);
@@ -946,7 +948,7 @@ void MainWindow::OnDigitalPtt(bool state)
         //ui->frameFreqCtrl->SetDigitColor(Qt::cyan);
         //ui->frameFreqCtrl->SetUnitsColor(Qt::lightGray);
 		ui->framePlot->SetCenterFreq( m_RxCenterFrequency );
-		ui->frameFreqCtrl->Setup(10, m_pSdrInterface->m_pRxFrequencyRangeMin[0], m_pSdrInterface->m_pRxFrequencyRangeMax[0], 1, UNITS_MHZ );
+        ui->frameFreqCtrl->Setup(10, m_pSdrInterface->m_pRxFrequencyRangeMin[0], m_pSdrInterface->m_pRxFrequencyRangeMax[0], 1, DEFAULT_UNITS);
 		ui->frameFreqCtrl->SetFrequency(m_RxCenterFrequency);
 		m_pSdrInterface->SetTxFrequency(m_RxCenterFrequency);
 	}
