@@ -80,9 +80,6 @@
      <bold>false</bold>
     </font>
    </property>
-   <property name="focusPolicy">
-    <enum>Qt::TabFocus</enum>
-   </property>
    <property name="toolTip">
     <string>TCP Control Port Number</string>
    </property>
@@ -134,9 +131,6 @@
      <bold>false</bold>
     </font>
    </property>
-   <property name="focusPolicy">
-    <enum>Qt::TabFocus</enum>
-   </property>
    <property name="toolTip">
     <string>TCP Control IP Address</string>
    </property>
@@ -165,9 +159,6 @@
      <weight>50</weight>
      <bold>false</bold>
     </font>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::TabFocus</enum>
    </property>
    <property name="text">
     <string/>
@@ -271,9 +262,6 @@
      <bold>false</bold>
     </font>
    </property>
-   <property name="focusPolicy">
-    <enum>Qt::TabFocus</enum>
-   </property>
    <property name="maxLength">
     <number>16</number>
    </property>
@@ -301,9 +289,6 @@
      <bold>false</bold>
     </font>
    </property>
-   <property name="focusPolicy">
-    <enum>Qt::TabFocus</enum>
-   </property>
    <property name="maxLength">
     <number>16</number>
    </property>
@@ -321,7 +306,7 @@
     </rect>
    </property>
    <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
+    <enum>Qt::StrongFocus</enum>
    </property>
    <property name="toolTip">
     <string>Find SDR's on WEB</string>
@@ -349,9 +334,6 @@
     <font>
      <italic>false</italic>
     </font>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::TabFocus</enum>
    </property>
    <property name="maxLength">
     <number>256</number>
@@ -395,9 +377,6 @@
     <font>
      <italic>false</italic>
     </font>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::TabFocus</enum>
    </property>
    <property name="maxLength">
     <number>256</number>
@@ -466,9 +445,6 @@
    </property>
    <property name="mouseTracking">
     <bool>true</bool>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::TabFocus</enum>
    </property>
    <property name="text">
     <string/>
